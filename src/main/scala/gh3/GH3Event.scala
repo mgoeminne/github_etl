@@ -1,6 +1,6 @@
 package gh3
 
-import net.liftweb.json.JsonAST.{JArray, JString, JValue}
+import net.liftweb.json.JsonAST.{JArray, JValue}
 
 sealed class GH3Event
 
@@ -175,7 +175,7 @@ object GollumEvent
 
 case class IssueCommentEvent(action: String,
                              issue: GH3Issue,
-                             comment: GH3CommitComment,
+                             comment: GH3IssueComment,
                              repository: GH3Repository,
                              sender: GH3Sender
                             ) extends GH3Event
@@ -186,7 +186,7 @@ object IssueCommentEvent
    {
       val action = node2String(json \ "action")
       val issue = GH3Issue(json \ "issue")
-      val comment = GH3CommitComment(json \ "comment")
+      val comment = GH3IssueComment(json \ "comment")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
 
