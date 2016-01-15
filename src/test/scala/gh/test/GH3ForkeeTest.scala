@@ -6,7 +6,7 @@ import net.liftweb.json._
 
 class GH3ForkeeTest extends FlatSpec with Matchers
 {
-   "A valid GH3Forkee" should "be correclty parsed" in {
+   "A valid GH3Forkee" should "be correctly parsed" in {
       val json = parse(
          """
            | {

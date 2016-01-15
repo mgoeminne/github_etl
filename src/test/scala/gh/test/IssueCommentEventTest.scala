@@ -1,20 +1,25 @@
 package gh.test
 
-import gh3.CommitCommentEvent
+import gh3.{IssueCommentEvent, CommitCommentEvent}
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 
-class CommitCommentEventTest extends FlatSpec with Matchers
+class IssueCommentEventTest extends FlatSpec with Matchers
 {
-   "A valid commit comment event" must "be correctly parsed" in {
+   "A valid issue comment event" must "be correctly parsed" in {
       val json = parse(
          """
            | {
            |  "action": "created",
-           |  "comment": {
-           |    "url": "https://api.github.com/repos/baxterthehacker/public-repo/comments/11056394",
-           |    "html_url": "https://github.com/baxterthehacker/public-repo/commit/9049f1265b7d61be4a8904a9a27120d2064dab3b#commitcomment-11056394",
-           |    "id": 11056394,
+           |  "issue": {
+           |    "url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/2",
+           |    "labels_url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/2/labels{/name}",
+           |    "comments_url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/2/comments",
+           |    "events_url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/2/events",
+           |    "html_url": "https://github.com/baxterthehacker/public-repo/issues/2",
+           |    "id": 73464126,
+           |    "number": 2,
+           |    "title": "Spelling error in the README file",
            |    "user": {
            |      "login": "baxterthehacker",
            |      "id": 6752317,
@@ -34,13 +39,50 @@ class CommitCommentEventTest extends FlatSpec with Matchers
            |      "type": "User",
            |      "site_admin": false
            |    },
-           |    "position": null,
-           |    "line": null,
-           |    "path": null,
-           |    "commit_id": "9049f1265b7d61be4a8904a9a27120d2064dab3b",
-           |    "created_at": "2015-05-05T23:40:29Z",
-           |    "updated_at": "2015-05-05T23:40:29Z",
-           |    "body": "This is a really good change! :+1:"
+           |    "labels": [
+           |      {
+           |        "url": "https://api.github.com/repos/baxterthehacker/public-repo/labels/bug",
+           |        "name": "bug",
+           |        "color": "fc2929"
+           |      }
+           |    ],
+           |    "state": "open",
+           |    "locked": false,
+           |    "assignee": null,
+           |    "milestone": null,
+           |    "comments": 1,
+           |    "created_at": "2015-05-05T23:40:28Z",
+           |    "updated_at": "2015-05-05T23:40:28Z",
+           |    "closed_at": null,
+           |    "body": "It looks like you accidently spelled 'commit' with two 't's."
+           |  },
+           |  "comment": {
+           |    "url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/comments/99262140",
+           |    "html_url": "https://github.com/baxterthehacker/public-repo/issues/2#issuecomment-99262140",
+           |    "issue_url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/2",
+           |    "id": 99262140,
+           |    "user": {
+           |      "login": "baxterthehacker",
+           |      "id": 6752317,
+           |      "avatar_url": "https://avatars.githubusercontent.com/u/6752317?v=3",
+           |      "gravatar_id": "",
+           |      "url": "https://api.github.com/users/baxterthehacker",
+           |      "html_url": "https://github.com/baxterthehacker",
+           |      "followers_url": "https://api.github.com/users/baxterthehacker/followers",
+           |      "following_url": "https://api.github.com/users/baxterthehacker/following{/other_user}",
+           |      "gists_url": "https://api.github.com/users/baxterthehacker/gists{/gist_id}",
+           |      "starred_url": "https://api.github.com/users/baxterthehacker/starred{/owner}{/repo}",
+           |      "subscriptions_url": "https://api.github.com/users/baxterthehacker/subscriptions",
+           |      "organizations_url": "https://api.github.com/users/baxterthehacker/orgs",
+           |      "repos_url": "https://api.github.com/users/baxterthehacker/repos",
+           |      "events_url": "https://api.github.com/users/baxterthehacker/events{/privacy}",
+           |      "received_events_url": "https://api.github.com/users/baxterthehacker/received_events",
+           |      "type": "User",
+           |      "site_admin": false
+           |    },
+           |    "created_at": "2015-05-05T23:40:28Z",
+           |    "updated_at": "2015-05-05T23:40:28Z",
+           |    "body": "You are totally right! I'll get this fixed right away."
            |  },
            |  "repository": {
            |    "id": 35129377,
@@ -151,6 +193,6 @@ class CommitCommentEventTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      CommitCommentEvent(json).isDefined shouldBe true
+      IssueCommentEvent(json).isDefined shouldBe true
    }
 }

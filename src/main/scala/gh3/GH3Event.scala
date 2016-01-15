@@ -1,22 +1,22 @@
 package gh3
 
-import net.liftweb.json.JsonAST.{JString, JValue}
+import net.liftweb.json.JsonAST.{JArray, JString, JValue}
 
 sealed class GH3Event
 
 
 case class CommitCommentEvent(
-                             action: String,
-                             comment: GH3Comment,
-                             repository: GH3Repository,
-                             sender: GH3Sender
+                                action: String,
+                                comment: GH3CommitComment,
+                                repository: GH3Repository,
+                                sender: GH3Sender
                              ) extends GH3Event
 
 object CommitCommentEvent{
    def apply(json: JValue): Option[CommitCommentEvent] =
    {
       val action = node2String(json \ "action")
-      val comment = GH3Comment(json \ "comment")
+      val comment = GH3CommitComment(json \ "comment")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
 
@@ -155,12 +155,48 @@ case class GollumEvent( pages: Seq[GH3Page],
                         sender: GH3Sender
                       ) extends GH3Event
 
-case class IssueCommentEvent( action: String,
-                              issue: GH3Issue,
-                              comment: GH3Comment,
-                              repository: GH3Repository,
-                              sender: GH3Sender
+object GollumEvent
+{
+   def apply(json: JValue): Option[GollumEvent] =
+   {
+      val pages = (json \ "pages") match {
+         case JArray(a) => a.map(x => GH3Page(x))
+      }
+
+      val repository = GH3Repository(json \ "repository")
+      val sender = GH3Sender(json \ "sender")
+
+      if(Seq(repository, sender).forall(_.isDefined))
+         Some(new GollumEvent(pages.map(_.get), repository.get, sender.get))
+      else
+         None
+   }
+}
+
+case class IssueCommentEvent(action: String,
+                             issue: GH3Issue,
+                             comment: GH3CommitComment,
+                             repository: GH3Repository,
+                             sender: GH3Sender
                             ) extends GH3Event
+
+object IssueCommentEvent
+{
+   def apply(json: JValue): Option[IssueCommentEvent] =
+   {
+      val action = node2String(json \ "action")
+      val issue = GH3Issue(json \ "issue")
+      val comment = GH3CommitComment(json \ "comment")
+      val repository = GH3Repository(json \ "repository")
+      val sender = GH3Sender(json \ "sender")
+
+      val params = Seq(action, issue, comment, repository, sender)
+
+      if(params.forall(_.isDefined))
+         Some(new IssueCommentEvent(action.get, issue.get, comment.get, repository.get, sender.get))
+      else None
+   }
+}
 
 case class IssuesEvent(
                         action: String,

@@ -1,18 +1,21 @@
 package gh.test
 
-import gh3.GH3Comment
+package gh.test
+
+import gh3.{GH3IssueComment}
 import org.scalatest.{FlatSpec, Matchers}
 import net.liftweb.json._
 
-class GH3CommentTest extends FlatSpec with Matchers
+class GH3IssueCommentTest extends FlatSpec with Matchers
 {
-   "A valid comment" should "be correctly parsed" in {
+   "A valid issue comment" should "be correctly parsed" in {
       val json = parse(
          """
-           |{
-           |    "url": "https://api.github.com/repos/baxterthehacker/public-repo/comments/11056394",
-           |    "html_url": "https://github.com/baxterthehacker/public-repo/commit/9049f1265b7d61be4a8904a9a27120d2064dab3b#commitcomment-11056394",
-           |    "id": 11056394,
+           | {
+           |    "url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/comments/99262140",
+           |    "html_url": "https://github.com/baxterthehacker/public-repo/issues/2#issuecomment-99262140",
+           |    "issue_url": "https://api.github.com/repos/baxterthehacker/public-repo/issues/2",
+           |    "id": 99262140,
            |    "user": {
            |      "login": "baxterthehacker",
            |      "id": 6752317,
@@ -32,16 +35,12 @@ class GH3CommentTest extends FlatSpec with Matchers
            |      "type": "User",
            |      "site_admin": false
            |    },
-           |    "position": null,
-           |    "line": null,
-           |    "path": null,
-           |    "commit_id": "9049f1265b7d61be4a8904a9a27120d2064dab3b",
-           |    "created_at": "2015-05-05T23:40:29Z",
-           |    "updated_at": "2015-05-05T23:40:29Z",
-           |    "body": "This is a really good change! :+1:"
+           |    "created_at": "2015-05-05T23:40:28Z",
+           |    "updated_at": "2015-05-05T23:40:28Z",
+           |    "body": "You are totally right! I'll get this fixed right away."
            |  }
          """.stripMargin)
 
-      GH3Comment(json).isDefined shouldBe true
+      GH3IssueComment(json).isDefined shouldBe true
    }
 }

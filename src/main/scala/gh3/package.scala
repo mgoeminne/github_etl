@@ -8,7 +8,7 @@ import org.joda.time.format.DateTimeFormat
   */
 package object gh3
 {
-   private val formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
+   val formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
 
    def node2String(node: JValue): Option[String] =
    {
