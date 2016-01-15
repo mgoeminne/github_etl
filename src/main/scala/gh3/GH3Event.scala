@@ -132,7 +132,23 @@ object DeploymentStatusEvent
    }
 }
 
-case class ForkEvent( forkee: GH3Forkee ) extends GH3Event
+case class ForkEvent( forkee: GH3Forkee,
+                      repository: GH3Repository,
+                      sender: GH3Sender) extends GH3Event
+
+object ForkEvent
+{
+   def apply(json: JValue): Option[ForkEvent] =
+   {
+      val forkee = GH3Forkee(json \ "forkee")
+      val repository = GH3Repository(json \ "repository")
+      val sender = GH3Sender(json \ "sender")
+
+      if(Seq(forkee, repository, sender).forall(_.isDefined))
+         Some(new ForkEvent(forkee.get, repository.get, sender.get))
+      else None
+   }
+}
 
 case class GollumEvent( pages: Seq[GH3Page],
                         repository: GH3Repository,
