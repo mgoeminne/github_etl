@@ -227,6 +227,21 @@ case class MemberEvent(
                         sender: GH3Sender
                       ) extends GH3Event
 
+object MemberEvent
+{
+   def apply(json: JValue): Option[MemberEvent] =
+   {
+      val action = node2String(json \ "action")
+      val member = GH3Sender(json \ "member")
+      val repository = GH3Repository(json \ "repository")
+      val sender = GH3Sender(json \ "sender")
+
+      if(Seq(action, member, repository, sender).forall(_.isDefined))
+         Some(new MemberEvent(action.get, member.get, repository.get, sender.get))
+      else None
+   }
+}
+
 case class MembershipEvent(
                            action: String,
                            scope: String,
@@ -234,8 +249,22 @@ case class MembershipEvent(
                            sender: GH3Sender,
                            team: GH3Team,
                            organization: GH3Organization
-
                           ) extends GH3Event
+
+object MembershipEvent
+{
+   def apply(json: JValue): Option[MembershipEvent] =
+   {
+      val action = node2String(json \ "action")
+      val scope  = node2String(json \ "scope")
+      val member = GH3Sender(json \ "member")
+      val sender = GH3Sender(json \ "sender")
+      val team   = GH3Team(json \ "team")
+      //val organization = GH3Organization(json \ "organization")
+
+      None
+   }
+}
 
 case class PageBuildEvent(
                            id: Long,
