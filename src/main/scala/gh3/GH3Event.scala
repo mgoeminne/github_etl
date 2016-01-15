@@ -205,6 +205,21 @@ case class IssuesEvent(
                         sender: GH3Sender
                       ) extends GH3Event
 
+object IssuesEvent
+{
+   def apply(json: JValue): Option[IssuesEvent] =
+   {
+      val action = node2String(json \ "action")
+      val issue = GH3Issue(json \ "issue")
+      val repository = GH3Repository(json \ "repository")
+      val sender = GH3Sender(json \ "sender")
+
+      if(Seq(action, issue, repository, sender).forall(_.isDefined))
+         Some(new IssuesEvent(action.get, issue.get, repository.get, sender.get))
+      else None
+   }
+}
+
 case class MemberEvent(
                         action: String,
                         member: GH3Sender,
