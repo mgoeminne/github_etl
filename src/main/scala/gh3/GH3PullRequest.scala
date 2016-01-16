@@ -80,17 +80,21 @@ object GH3PullRequest
       val assignee = n2os("assignee")
       val milestone = n2os("milestone")
       val commits_url = n2s("commits_url")
-      val review_comments_link = n2s("review_comments_link")
-      val review_comment_link = n2s("review_comment_link")
-      val commits_link = n2s("commits_link")
+      val review_comments_url = n2s("review_comments_url")
+      val review_comment_url = n2s("review_comment_url")
+      val comments_url = n2s("comments_url")
       val statuses_url = n2s("statuses_url")
       val head = GH3Head(json \ "head")
       val base = GH3Base(json \ "base")
-      val self_link = node2String(json \ "_link")("self")
-      val html_link = node2String(json \ "_link")("html")
-      val issue_link = node2String(json \ "_link")("issue")
-      val comments_link = node2String(json \ "_link")("comments")
-      val statuses_link = node2String(json \ "_link")("statuses")
+      val self_link = node2String(json \ "_links" \ "self")("href")
+      val html_link = node2String(json \ "_links" \ "html")("href")
+      val issue_link = node2String(json \ "_links" \ "issue")("href")
+      val comments_link = node2String(json \ "_links" \ "comments")("href")
+      val statuses_link = node2String(json \ "_links" \ "statuses")("href")
+      val review_comments_link = node2String(json \ "_links" \ "review_comments")("href")
+      val review_comment_link = node2String(json \ "_links" \ "review_comment")("href")
+      val commits_link = node2String(json \ "_links" \ "commits")("href")
+
       val merged = n2b("merged")
       val mergeable = n2os("mergeable")
       val mergeable_state = n2s("mergeable_state")
@@ -123,8 +127,8 @@ object GH3PullRequest
          assignee,
          milestone,
          commits_url,
-         review_comments_link,
-         review_comment_link,
+         review_comments_url,
+         review_comment_url,
          statuses_url,
          head,
          base,
@@ -147,7 +151,7 @@ object GH3PullRequest
          deletions,
          changed_files
       )
-      
+
       if(params.forall(_.isDefined))
          Some(new GH3PullRequest(url.get,
             id.get,
