@@ -219,8 +219,6 @@ object GH3Repository
          open_issues,
          default_branch)
 
-      println(params.map(_.isDefined))
-
       if(params.forall(_.isDefined)){
          Some(new GH3Repository(
             id.get,

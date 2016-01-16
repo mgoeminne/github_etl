@@ -45,7 +45,6 @@ object GH3CommitComment
 
       val params = Seq(url, html_url, id, user, position, line, path, commit_id, created_at, updated_at, body)
 
-      println(params.map(_.isDefined))
       if(params.forall(_.isDefined))
          Some(new GH3CommitComment( url.get, html_url.get, id.get, user.get, position.get, line.get, path.get, commit_id.get,
                               created_at.get, updated_at.get, body.get

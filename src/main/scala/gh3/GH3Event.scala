@@ -275,7 +275,9 @@ object MembershipEvent
       val team   = GH3Team(json \ "team")
       val organization = GH3Organization(json \ "organization")
 
-      None
+      if(Seq(action, scope, member, sender, team, organization).forall(_.isDefined))
+         Some(new MembershipEvent(action.get, scope.get, member.get, sender.get, team.get, organization.get))
+      else None
    }
 }
 
