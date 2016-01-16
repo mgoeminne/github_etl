@@ -6,7 +6,7 @@ import net.liftweb.json._
 
 class GollumEventTest extends FlatSpec with Matchers
 {
-   "A valid GH3Page" must "be correclty parsed" in {
+   "A valid GH3Page" must "be correctly parsed" in {
       val json = parse(
          """
            | {
