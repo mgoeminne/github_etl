@@ -4,7 +4,7 @@ import gh3.{MembershipEvent, MemberEvent}
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 
-class MemberEventTest extends FlatSpec with Matchers
+class MembershipEventTest extends FlatSpec with Matchers
 {
    "A valid MembershipEvent" must "be correctly parsed" in {
       val json = parse(
