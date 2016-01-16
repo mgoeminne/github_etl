@@ -105,7 +105,7 @@ object GH3PullRequest
       val additions = n2l("additions").map(_.toInt)
       val deletions = n2l("deletions").map(_.toInt)
       val changed_files = n2l("changed_files").map(_.toInt)
-      
+
       val params = Seq(
          url,
          id,
@@ -151,6 +151,9 @@ object GH3PullRequest
          deletions,
          changed_files
       )
+
+      println(params.map(_.isDefined))
+
 
       if(params.forall(_.isDefined))
          Some(new GH3PullRequest(url.get,

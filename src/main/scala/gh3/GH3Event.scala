@@ -358,6 +358,24 @@ case class PullRequestReviewCommentEvent(
                                           sender: GH3Sender
                                         ) extends GH3Event
 
+object PullRequestReviewCommentEvent
+{
+   def apply(json: JValue): Option[PullRequestReviewCommentEvent] =
+   {
+      val action = node2String(json)("action")
+      val comment = GH3PullRequestComment(json \ "comment")
+      val pull_request = GH3PullRequest(json \ "pull_request")
+      val repository = GH3Repository(json \ "repository")
+      val sender = GH3Sender(json \ "sender")
+
+      println(Seq(action, comment, pull_request, repository, sender).map(_.isDefined))
+
+      if(Seq(action, comment, pull_request, repository, sender).forall(_.isDefined))
+         Some(new PullRequestReviewCommentEvent(action.get, comment.get, pull_request.get, repository.get, sender.get))
+      else None
+   }
+}
+
 case class PushEvent(
                           ref: String,
                           before: String,
@@ -405,6 +423,23 @@ case class RepositoryEvent(
                            organization: GH3Organization,
                            sender: GH3Sender
                           ) extends GH3Event
+
+object RepositoryEvent
+{
+   def apply(json: JValue): Option[RepositoryEvent] =
+   {
+      val action = node2String(json)("action")
+      val repository = GH3Repository(json \ "repository")
+      val organization = GH3Organization(json \ "organization")
+      val sender = GH3Sender(json \ "sender")
+
+      val params = Seq(action, repository, organization, sender)
+
+      if(params.forall(_.isDefined))
+         Some(new RepositoryEvent(action.get, repository.get, organization.get, sender.get))
+      else None
+   }
+}
 
 case class WatchEvent(
                         action: String,
