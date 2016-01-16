@@ -1,4 +1,3 @@
-import gh.Main
 import net.liftweb.json.JsonAST._
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
@@ -27,9 +26,18 @@ package object gh3
       }
    }
 
-   def node2LocalDateTime(node: JValue)(tag:String): Option[LocalDateTime] =
+   def node2LocalDateTime(node: JValue)(tag: String): Option[LocalDateTime] =
    {
       node2String(node)(tag).map(x => formatter.parseLocalDateTime(x.take(19)))
+   }
+
+   def node2OptionLocalDateTime(node: JValue)(tag: String): Option[Option[LocalDateTime]] =
+   {
+      (node\tag) match {
+         case JNull => Some(None)
+         case JString(d) => Some(Some(formatter.parseLocalDateTime(d.take(19))))
+         case _ => None
+      }
    }
 
    def node2Boolean(node: JValue)(tag:String): Option[Boolean] =
