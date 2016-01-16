@@ -321,6 +321,21 @@ case class ReleaseEvent(
                            sender: GH3Sender
                        ) extends GH3Event
 
+object ReleaseEvent
+{
+   def apply(json: JValue): Option[ReleaseEvent] =
+   {
+      val action = node2String(json \ "action")
+      val release = GH3Release(json \ "release")
+      val repository = GH3Repository(json \ "repository")
+      val sender = GH3Sender(json \ "sender")
+
+      if(Seq(action, release, repository, sender).forall(_.isDefined))
+         Some(new ReleaseEvent(action.get, release.get, repository.get, sender.get))
+      else None
+   }
+}
+
 case class RepositoryEvent(
                            action: String,
                            repository: GH3Repository,
