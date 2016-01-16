@@ -8,7 +8,7 @@ import net.liftweb.json._
 
 class GH3RepositoryTest extends FlatSpec with Matchers
 {
-   "A valid GH3 repository" should "be correctly parser" in {
+   "A valid GH3Repository" should "be correctly parser" in {
          val json = parse(
             """
            |{

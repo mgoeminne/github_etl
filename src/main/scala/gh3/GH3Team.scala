@@ -17,13 +17,15 @@ object GH3Team
 {
    def apply(json: JValue): Option[GH3Team] =
    {
-      val name = node2String(json \ "name")
-      val id   = node2Long(json \ "id")
-      val slug = node2String(json \ "slug")
-      val permission = node2String(json \ "permission")
-      val url = node2String(json \ "url")
-      val members_url = node2String(json \ "members_url")
-      val repositories_url = node2String(json \ "repositories_url")
+      val n2s = node2String(json)(_)
+      
+      val name = n2s("name")
+      val id   = node2Long(json)("id")
+      val slug = n2s("slug")
+      val permission = n2s("permission")
+      val url = n2s("url")
+      val members_url = n2s("members_url")
+      val repositories_url = n2s("repositories_url")
 
       val params = Seq(name, id, slug, permission, url, members_url, repositories_url)
 

@@ -25,30 +25,23 @@ object GH3CommitComment
 
    def apply(json: JValue): Option[GH3CommitComment] =
    {
-      val url = node2String(json \ "url")
-      val html_url = node2String(json \ "html_url")
-      val id = node2Long(json \ "id")
+      val n2s = node2String(json)(_)
+
+      val url = n2s("url")
+      val html_url = n2s("html_url")
+      val id = node2Long(json)("id")
       val user = GH3Sender(json \ "user")
 
-      val position = (json \ "position") match {
-         case JString(x) => Some(Some(x))
-         case _ => Some(None)
-      }
+      val position = node2OptionString(json)("position")
 
-      val line = (json \ "line") match {
-         case JString(x) => Some(Some(x))
-         case _ => Some(None)
-      }
+      val line = node2OptionString(json)("line")
 
-      val path = (json \ "path") match {
-         case JString(x) => Some(Some(x))
-         case _ => Some(None)
-      }
+      val path = node2OptionString(json)("path")
 
-      val commit_id = node2String(json \ "commit_id")
-      val created_at = node2String(json \ "created_at").map(x => Main.formatter.parseLocalDateTime(x take 19))
-      val updated_at = node2String(json \ "updated_at").map(x => Main.formatter.parseLocalDateTime(x take 19))
-      val body = node2String(json \ "body")
+      val commit_id = n2s("commit_id")
+      val created_at = node2LocalDateTime(json)("created_at")
+      val updated_at = node2LocalDateTime(json)("updated_at")
+      val body = n2s("body")
 
       val params = Seq(url, html_url, id, user, position, line, path, commit_id, created_at, updated_at, body)
 

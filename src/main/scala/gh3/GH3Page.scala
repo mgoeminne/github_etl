@@ -14,12 +14,15 @@ object GH3Page
 {
    def apply(json: JValue): Option[GH3Page] =
    {
-      val page_name = node2String(json \ "page_name")
-      val title = node2String(json \ "title")
-      val summary = node2OptionString(json \ "summary")
-      val action = node2String(json \ "action")
-      val sha = node2String(json \ "sha")
-      val html_url = node2String(json \ "html_url")
+      val n2s = node2String(json)(_)
+
+
+      val page_name = n2s("page_name")
+      val title = n2s("title")
+      val summary = node2OptionString(json)("summary")
+      val action = n2s("action")
+      val sha = n2s("sha")
+      val html_url = n2s("html_url")
 
       val params = Seq(page_name, title, summary, action, sha, html_url)
 

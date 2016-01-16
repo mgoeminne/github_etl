@@ -15,7 +15,9 @@ case class CommitCommentEvent(
 object CommitCommentEvent{
    def apply(json: JValue): Option[CommitCommentEvent] =
    {
-      val action = node2String(json \ "action")
+      val n2s = node2String(json)(_)
+
+      val action = n2s("action")
       val comment = GH3CommitComment(json \ "comment")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
@@ -41,11 +43,13 @@ object CreateEvent
 {
    def apply(json: JValue): Option[CreateEvent] =
    {
-      val ref = node2String(json \ "ref")
-      val ref_type = node2String(json \ "ref_type")
-      val master_branch = node2String(json \ "master_branch")
-      val description = node2String(json \ "description")
-      val pusher_type = node2String(json \ "pusher_type")
+      val n2s = node2String(json)(_)
+      
+      val ref = n2s("ref")
+      val ref_type = n2s("ref_type")
+      val master_branch = n2s("master_branch")
+      val description = n2s("description")
+      val pusher_type = n2s("pusher_type")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
 
@@ -71,9 +75,11 @@ object DeleteEvent
 {
    def apply(json: JValue): Option[DeleteEvent] =
    {
-      val ref = node2String(json \ "ref")
-      val ref_type = node2String(json \ "ref_type")
-      val pusher_type = node2String(json \ "pusher_type")
+      val n2s = node2String(json)(_)
+
+      val ref = n2s("ref")
+      val ref_type = n2s("ref_type")
+      val pusher_type = n2s("pusher_type")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
 
@@ -81,8 +87,7 @@ object DeleteEvent
 
       if(params.forall(_.isDefined))
          Some(new DeleteEvent(ref.get, ref_type.get, pusher_type.get, repository.get, sender.get))
-      else
-         None
+      else None
    }
 }
 
@@ -184,7 +189,9 @@ object IssueCommentEvent
 {
    def apply(json: JValue): Option[IssueCommentEvent] =
    {
-      val action = node2String(json \ "action")
+      val n2s = node2String(json)(_)
+
+      val action = n2s("action")
       val issue = GH3Issue(json \ "issue")
       val comment = GH3IssueComment(json \ "comment")
       val repository = GH3Repository(json \ "repository")
@@ -209,7 +216,9 @@ object IssuesEvent
 {
    def apply(json: JValue): Option[IssuesEvent] =
    {
-      val action = node2String(json \ "action")
+      val n2s = node2String(json)(_)
+
+      val action = n2s("action")
       val issue = GH3Issue(json \ "issue")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
@@ -231,7 +240,9 @@ object MemberEvent
 {
    def apply(json: JValue): Option[MemberEvent] =
    {
-      val action = node2String(json \ "action")
+      val n2s = node2String(json)(_)
+
+      val action = n2s("action")
       val member = GH3Sender(json \ "member")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
@@ -255,12 +266,14 @@ object MembershipEvent
 {
    def apply(json: JValue): Option[MembershipEvent] =
    {
-      val action = node2String(json \ "action")
-      val scope  = node2String(json \ "scope")
+      val n2s = node2String(json)(_)
+
+      val action = n2s("action")
+      val scope  = n2s("scope")
       val member = GH3Sender(json \ "member")
       val sender = GH3Sender(json \ "sender")
       val team   = GH3Team(json \ "team")
-      //val organization = GH3Organization(json \ "organization")
+      val organization = GH3Organization(json \ "organization")
 
       None
    }
@@ -325,7 +338,9 @@ object ReleaseEvent
 {
    def apply(json: JValue): Option[ReleaseEvent] =
    {
-      val action = node2String(json \ "action")
+      val n2s = node2String(json)(_)
+
+      val action = n2s("action")
       val release = GH3Release(json \ "release")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")

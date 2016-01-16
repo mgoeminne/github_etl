@@ -11,9 +11,11 @@ object GH3Label
 {
    def apply(json: JValue): Option[GH3Label] =
    {
-      val url = node2String(json \ "url")
-      val name = node2String(json \ "name")
-      val color = node2String(json \ "color")
+      val n2s = node2String(json)(_)
+      
+      val url = n2s("url")
+      val name = n2s("name")
+      val color = n2s("color")
 
       if(Seq(url, name, color).forall(_.isDefined))
          Some(new GH3Label(url.get, name.get, color.get))

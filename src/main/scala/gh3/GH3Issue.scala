@@ -31,38 +31,45 @@ object GH3Issue
 {
    def apply(json: JValue): Option[GH3Issue] =
    {
-      val url = node2String(json \ "url")
-      val labels_url = node2String(json \ "labels_url")
-      val comments_url = node2String(json \ "comments_url")
-      val events_url = node2String(json \ "events_url")
-      val html_url = node2String(json \ "html_url")
-      val id = node2Long(json \ "id")
-      val number = node2Long(json \ "number")
-      val title = node2String(json \ "title")
+      val n2s = node2String(json)(_)
+      val n2l = node2Long(json)(_)
+      val n2os = node2OptionString(json)(_)
+      val n2ldt = node2LocalDateTime(json)(_)
+      val n2b = node2Boolean(json)(_)
+      
+      val url = n2s("url")
+      val labels_url = n2s("labels_url")
+      val comments_url = n2s("comments_url")
+      val events_url = n2s("events_url")
+      val html_url = n2s("html_url")
+      val id = n2l("id")
+      val number = n2l("number")
+      val title = n2s("title")
       val user = GH3Sender(json \ "user")
       val labels = (json \ "labels") match {
-         case JArray(a) => a.map(GH3Label(_).get)
+         case JArray(a) => Some(a.map(GH3Label(_).get))
+         case _ => None
       }
-      val state = node2String(json \ "state")
-      val locked = node2Boolean(json \ "locked")
-      val assignee = node2OptionString(json \ "assignee")
-      val milestone = node2OptionString(json \ "milestone")
-      val comments = node2Long(json \ "comments")
-      val created_at = node2LocalDateTime(json \ "created_at")
-      val updated_at = node2LocalDateTime(json \ "updated_at")
+      val state = n2s("state")
+      val locked = n2b("locked")
+      val assignee = n2os("assignee")
+      val milestone = n2os("milestone")
+      val comments = n2l("comments")
+      val created_at = n2ldt("created_at")
+      val updated_at = n2ldt("updated_at")
       val closed_at = (json \ "closed_at") match {
          case JString(x) => Some(Some(formatter.parseLocalDateTime(x.take(19))))
          case JNull => Some(None)
          case _ => None
       }
-      val body = node2String(json \ "body")
+      val body = n2s("body")
 
-      val params = Seq(url, labels_url, comments_url, events_url, html_url, id, number, title, user, state, locked,
+      val params = Seq(url, labels_url, comments_url, events_url, html_url, id, number, title, user, labels, state, locked,
       assignee, milestone, comments, created_at, updated_at, closed_at, body)
 
       if(params.forall(_.isDefined))
          Some(new GH3Issue(url.get, labels_url.get, comments_url.get, events_url.get, html_url.get, id.get, number.get,
-            title.get, user.get, labels, state.get, locked.get, assignee.get, milestone.get, comments.get, created_at.get,
+            title.get, user.get, labels.get, state.get, locked.get, assignee.get, milestone.get, comments.get, created_at.get,
             updated_at.get, closed_at.get, body.get))
       else None
    }

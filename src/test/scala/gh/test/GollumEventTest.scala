@@ -1,12 +1,12 @@
 package gh.test
 
-import gh3.{GH3Page}
+import gh3.{GollumEvent, GH3Page}
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 
 class GollumEventTest extends FlatSpec with Matchers
 {
-   "A valid GH3Page" must "be correctly parsed" in {
+   "A valid GollumEvent" must "be correctly parsed" in {
       val json = parse(
          """
            | {
@@ -129,6 +129,6 @@ class GollumEventTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      GH3Page(json).isDefined shouldBe true
+      GollumEvent(json).isDefined shouldBe true
    }
 }

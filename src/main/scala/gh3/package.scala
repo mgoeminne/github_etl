@@ -10,44 +10,41 @@ package object gh3
 {
    val formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-   def node2String(node: JValue): Option[String] =
+   def node2String(node: JValue)(tag: String): Option[String] =
    {
-      node match {
+      (node\tag) match {
          case JString(x) => Some(x)
          case _ => None
       }
    }
 
-   def node2OptionString(node: JValue): Option[Option[String]] =
+   def node2OptionString(node: JValue)(tag: String): Option[Option[String]] =
    {
-      node match {
+      (node\tag) match {
          case JString(x) => Some(Some(x))
          case JNull => Some(None)
          case _ => None
       }
    }
 
-   def node2LocalDateTime(node: JValue): Option[LocalDateTime] =
+   def node2LocalDateTime(node: JValue)(tag:String): Option[LocalDateTime] =
    {
-      node2String(node).map(x => formatter.parseLocalDateTime(x.take(19)))
+      node2String(node)(tag).map(x => formatter.parseLocalDateTime(x.take(19)))
    }
 
-   def node2Boolean(node: JValue): Option[Boolean] =
+   def node2Boolean(node: JValue)(tag:String): Option[Boolean] =
    {
-      node match {
+      (node\tag) match {
          case JBool(x) => Some(x)
          case _ => None
       }
    }
 
-   def node2Long(node: JValue): Option[Long] =
+   def node2Long(node: JValue)(tag: String): Option[Long] =
    {
-      node match {
+      (node\tag) match {
          case JInt(x) => Some(x.toLong)
          case _ => None
       }
    }
-
-
-
 }

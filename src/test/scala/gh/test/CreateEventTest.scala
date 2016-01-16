@@ -6,7 +6,7 @@ import net.liftweb.json._
 
 class CreateEventTest extends FlatSpec with Matchers
 {
-   "A valid create event" must "be correctly parsed" in {
+   "A valid CreateEvent" must "be correctly parsed" in {
       val json = parse(
          """
            |{

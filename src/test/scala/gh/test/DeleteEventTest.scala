@@ -6,7 +6,7 @@ import org.scalatest.{Matchers, FlatSpec}
 
 class DeleteEventTest extends FlatSpec with Matchers
 {
-   "A valid delete event" must "be correctly parsed" in {
+   "A valid DeleteEvent" must "be correctly parsed" in {
       val json = parse(
          """
            |{

@@ -1,6 +1,6 @@
 package gh3
 
-import net.liftweb.json.JsonAST.{JArray, JValue}
+import net.liftweb.json.JsonAST.{JString, JArray, JValue}
 import org.joda.time.LocalDateTime
 
 
@@ -28,28 +28,32 @@ object GH3Release
 {
    def apply(json: JValue): Option[GH3Release] =
    {
-      val n2s = (tag: String) => node2String(json \ tag)
+      val n2s = node2String(json)(_)
+      val n2l = node2Long(json)(_)
+      val n2os = node2OptionString(json)(_)
+      val n2ldt = node2LocalDateTime(json)(_)
+      val n2b = node2Boolean(json)(_)
 
       val url = n2s("url")
       val assets_url = n2s("assets_url")
       val upload_url = n2s("upload_url")
       val html_url = n2s("html_url")
-      val id = node2Long(json \ "id")
+      val id = n2l("id")
       val tag_name = n2s("tag_name")
       val target_commitish = n2s("target_commitish")
-      val name = node2OptionString(json \ "name")
-      val draft = node2Boolean(json \ "draft")
+      val name = n2os("name")
+      val draft = n2b("draft")
       val author = GH3Sender(json \ "author")
-      val prerelease = node2Boolean(json \ "prerelease")
-      val created_at = node2LocalDateTime(json \ "created_at")
-      val published_at = node2LocalDateTime(json \ "published_at")
+      val prerelease = n2b("prerelease")
+      val created_at = n2ldt("created_at")
+      val published_at = n2ldt("published_at")
       val assets = (json \ "assets") match {
-         case JArray(x) => Some(x.map(node2String(_).get))
+         case JArray(x) => Some(x.map(e => e match {case JString(s) => s}))
          case _ => None
       }
       val tarball_url = n2s("tarball_url")
       val zipball_url = n2s("zipball_url")
-      val body = node2OptionString(json \ "body")
+      val body = n2os("body")
 
       val params = Seq(url, assets_url, upload_url, html_url, id, tag_name, target_commitish, name, draft, author,
       prerelease, created_at, published_at, assets, tarball_url, zipball_url, body)

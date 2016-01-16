@@ -21,16 +21,18 @@ object GH3DeploymentStatus
 {
    def apply(json: JValue): Option[GH3DeploymentStatus] =
    {
-      val url = node2String(json \ "url")
-      val id = node2Long(json \ "id")
-      val state = node2String(json \ "state")
+      val n2s = node2String(json)(_)
+      
+      val url = n2s("url")
+      val id = node2Long(json)("id")
+      val state = n2s("state")
       val creator = GH3Sender(json \ "creator")
-      val description = node2OptionString(json \ "description")
-      val target_url = node2OptionString(json \ "target_url")
-      val created_at = node2LocalDateTime(json \ "created_at")
-      val updated_at = node2LocalDateTime(json \ "updated_at")
-      val deployment_url = node2String(json \ "deployment_url")
-      val repository_url = node2String(json \ "repository_url")
+      val description = node2OptionString(json)("description")
+      val target_url = node2OptionString(json)("target_url")
+      val created_at = node2LocalDateTime(json)("created_at")
+      val updated_at = node2LocalDateTime(json)("updated_at")
+      val deployment_url = n2s("deployment_url")
+      val repository_url = n2s("repository_url")
 
       val params = Seq(url, id, state, creator, description, target_url, created_at, updated_at, deployment_url, repository_url)
 
