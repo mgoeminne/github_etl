@@ -1,6 +1,6 @@
 package gh.test
 
-import gh3.{DeleteEvent, CreateEvent}
+import gh3.events.{DeleteEvent}
 import net.liftweb.json._
 import org.scalatest.{Matchers, FlatSpec}
 

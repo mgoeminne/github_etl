@@ -1,6 +1,6 @@
 package gh.test
 
-import gh3.{GollumEvent, GH3Page}
+import gh3.events.GollumEvent
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 

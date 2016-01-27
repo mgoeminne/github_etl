@@ -2,7 +2,7 @@ package gh.test
 
 package gh.test
 
-import gh3.{DeploymentStatusEvent, CommitCommentEvent}
+import gh3.events.{DeploymentStatusEvent}
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 

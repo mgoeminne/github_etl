@@ -1,6 +1,6 @@
 package gh.test
 
-import gh3.PageBuildEvent
+import gh3.events.PageBuildEvent
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 

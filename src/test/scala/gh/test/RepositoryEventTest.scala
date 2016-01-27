@@ -1,6 +1,6 @@
 package gh.test
 
-import gh3.{RepositoryEvent}
+import gh3.events.RepositoryEvent
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 
