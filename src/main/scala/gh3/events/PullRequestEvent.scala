@@ -6,7 +6,7 @@ import net.liftweb.json.JsonAST.JValue
 case class PullRequestEvent(
                               action: String,
                               number: Long,
-                              pull_request: GH3PullRequest,
+                              pull_request: GH3PullRequestForReviewComment,
                               repository: GH3Repository,
                               sender: GH3Sender
                            ) extends GH3Event
@@ -17,7 +17,7 @@ object PullRequestEvent
    {
       val action = node2String(json)("action")
       val number = node2Long(json)("number")
-      val pull_request = GH3PullRequest(json \ "pull_request")
+      val pull_request = GH3PullRequestForReviewComment(json \ "pull_request")
       val repository = GH3Repository(json \ "repository")
       val sender = GH3Sender(json \ "sender")
 

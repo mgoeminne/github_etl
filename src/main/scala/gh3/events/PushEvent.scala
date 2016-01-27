@@ -47,8 +47,6 @@ object PushEvent
       val params = Seq(ref, before, after, created, deleted, forced, base_ref, compare, commits, head_commit, repository,
          pusher, sender)
 
-      println(params.map(_.isDefined))
-
       if(params.forall(_.isDefined))
          Some(new PushEvent(ref.get, before.get, after.get, created.get, deleted.get, forced.get, base_ref.get,
             compare.get, commits.get, head_commit.get, repository.get, pusher.get, sender.get))

@@ -33,7 +33,6 @@ object GH3Build
 
       val params = Seq(url, status, error_message, pusher, commit, duration, created_at, updated_at)
 
-      println(params.map(_.isDefined))
       if(params.forall(_.isDefined))
          Some(new GH3Build(url.get, status.get, error_message.get, pusher.get, commit.get, duration.get, created_at.get,
          updated_at.get))

@@ -4,7 +4,7 @@ import gh3.GH3PullRequestComment
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 
-class GH3PullRequestCommentTest extends FlatSpec with Matchers
+class GH3PullRequestForReviewCommentCommentTest extends FlatSpec with Matchers
 {
    "A valid GH3PullRequestComment" must "be correctly parsed" in {
       val json = parse(

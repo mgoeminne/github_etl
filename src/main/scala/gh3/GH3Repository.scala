@@ -8,7 +8,7 @@ import org.joda.time.LocalDateTime
 case class GH3Repository(  id: Long,
                            name: String,
                            full_name: String,
-                           owner: GH3Sender,
+                           owner: Either[GH3Sender, GH3Owner],
                            `private`: Boolean,
                            html_url: String,
                            description: String,
@@ -87,7 +87,13 @@ object GH3Repository
       val id = n2l("id")
       val name = n2s("name")
       val full_name = n2s("full_name")
-      val owner = GH3Sender(json \ "owner")
+      val owner: Option[Either[GH3Sender, GH3Owner]] = GH3Sender(json \ "owner") match {
+         case x: Some[GH3Sender] => Some(Left(x.get))
+         case _ => GH3Owner(json \ "owner") match {
+            case x: Some[GH3Owner] => Some(Right(x.get))
+            case _ => None
+         }
+      }
       val `private` = n2b("private")
       val html_url = n2s("html_url")
       val description = n2s("description")
@@ -128,9 +134,27 @@ object GH3Repository
       val notifications_url = n2s("notifications_url")
       val labels_url = n2s("labels_url")
       val releases_url = n2s("releases_url")
-      val created_at = n2ldt("created_at")
-      val updated_at = n2ldt("updated_at")
-      val pushed_at = n2ldt("pushed_at")
+      val created_at = n2ldt("created_at") match {
+         case x: Some[LocalDateTime] => x
+         case _ => n2l("created_at") match {
+            case x: Some[Long] => Some(new LocalDateTime(x.get))
+            case _ => None
+         }
+      }
+      val updated_at = n2ldt("updated_at") match {
+         case x: Some[LocalDateTime] => x
+         case _ => n2l("updated_at") match {
+            case x: Some[Long] => Some(new LocalDateTime(x.get))
+            case _ => None
+         }
+      }
+      val pushed_at = n2ldt("pushed_at") match {
+         case x: Some[LocalDateTime] => x
+         case _ => n2l("pushed_at") match {
+            case x: Some[Long] => Some(new LocalDateTime(x.get))
+            case _ => None
+         }
+      }
       val git_url = n2s("git_url")
       val ssh_url = n2s("ssh_url")
       val clone_url = n2s("clone_url")
