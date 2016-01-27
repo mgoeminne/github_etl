@@ -13,7 +13,7 @@ case class MembershipEvent(
                              organization: GH3Organization
                           ) extends GH3Event
 
-object MembershipEvent
+object MembershipEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[MembershipEvent] =
    {

@@ -12,7 +12,7 @@ case class DeleteEvent(
                          sender: GH3Sender
                       ) extends GH3Event
 
-object DeleteEvent
+object DeleteEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[DeleteEvent] =
    {

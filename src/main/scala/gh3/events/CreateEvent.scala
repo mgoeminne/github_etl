@@ -15,7 +15,7 @@ case class CreateEvent (
 
                        ) extends GH3Event
 
-object CreateEvent
+object CreateEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[CreateEvent] =
    {

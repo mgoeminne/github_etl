@@ -10,7 +10,7 @@ case class WatchEvent(
                         sender: GH3Sender
                      ) extends GH3Event
 
-object WatchEvent
+object WatchEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[WatchEvent] =
    {

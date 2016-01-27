@@ -4,7 +4,7 @@ import java.io._
 import java.util.zip.GZIPInputStream
 
 import com.typesafe.scalalogging.Logger
-import gh3._
+import net.liftweb.json.JsonAST.JValue
 import net.liftweb.json._
 import org.joda.time.format.DateTimeFormat
 import org.slf4j.LoggerFactory
@@ -28,7 +28,8 @@ object Main
    {
 
       val files = directory.listFiles().filter(f => f.getName endsWith ".json.gz")
-                                       .filter(f => f.getName startsWith "2014-01")
+                                       .filter(f => f.getName startsWith "2011")
+
       val recorded_projects = scala.collection.mutable.Set[Long]()
       val recorded_contributors = scala.collection.mutable.Set[String]()
 
@@ -41,6 +42,17 @@ object Main
 
          buffered.lines.toArray.foreach(line => {
             val json = parse(line.toString)
+
+            //println(line)
+
+            json match {
+               case x: JObject => gh3.parse(x) match {
+                  case Some(a) => println(a)
+                  case _ => //println("NOT PARSED: " + x)
+               }
+               case _ => "ERROR " + json
+            }
+
             //logger.info("Parse line " + line)
 
 

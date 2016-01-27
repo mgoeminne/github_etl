@@ -8,7 +8,7 @@ case class PublicEvent(
                          sender: GH3Sender
                       ) extends GH3Event
 
-object PublicEvent
+object PublicEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[PublicEvent] =
    {

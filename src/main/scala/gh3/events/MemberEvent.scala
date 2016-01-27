@@ -11,7 +11,7 @@ case class MemberEvent(
                          sender: GH3Sender
                       ) extends GH3Event
 
-object MemberEvent
+object MemberEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[MemberEvent] =
    {

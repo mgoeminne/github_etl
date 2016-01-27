@@ -12,7 +12,7 @@ case class PullRequestReviewCommentEvent(
                                            sender: GH3Sender
                                         ) extends GH3Event
 
-object PullRequestReviewCommentEvent
+object PullRequestReviewCommentEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[PullRequestReviewCommentEvent] =
    {

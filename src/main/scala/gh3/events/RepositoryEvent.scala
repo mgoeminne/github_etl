@@ -13,7 +13,7 @@ case class RepositoryEvent(
 
 
 
-object RepositoryEvent
+object RepositoryEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[RepositoryEvent] =
    {

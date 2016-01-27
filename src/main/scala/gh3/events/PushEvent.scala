@@ -20,7 +20,7 @@ case class PushEvent(
                        sender: GH3Sender
                     ) extends GH3Event
 
-object PushEvent
+object PushEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[PushEvent] =
    {

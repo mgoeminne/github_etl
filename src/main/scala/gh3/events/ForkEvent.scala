@@ -7,7 +7,7 @@ case class ForkEvent( forkee: GH3Forkee,
                       repository: GH3Repository,
                       sender: GH3Sender) extends GH3Event
 
-object ForkEvent
+object ForkEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[ForkEvent] =
    {

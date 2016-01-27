@@ -11,7 +11,7 @@ case class ReleaseEvent(
                           sender: GH3Sender
                        ) extends GH3Event
 
-object ReleaseEvent
+object ReleaseEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[ReleaseEvent] =
    {

@@ -11,7 +11,7 @@ case class DeploymentStatusEvent(
                                    sender: GH3Sender
                                 ) extends GH3Event
 
-object DeploymentStatusEvent
+object DeploymentStatusEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[DeploymentStatusEvent] =
    {

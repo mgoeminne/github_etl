@@ -11,7 +11,7 @@ case class IssueCommentEvent(action: String,
                              sender: GH3Sender
                             ) extends GH3Event
 
-object IssueCommentEvent
+object IssueCommentEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[IssueCommentEvent] =
    {

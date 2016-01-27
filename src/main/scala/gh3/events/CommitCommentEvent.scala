@@ -11,7 +11,7 @@ case class CommitCommentEvent(
                                 sender: GH3Sender
                              ) extends GH3Event
 
-object CommitCommentEvent
+object CommitCommentEvent extends GH3EventParser
 {
    def apply(json: JValue): Option[CommitCommentEvent] =
    {
