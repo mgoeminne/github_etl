@@ -1,6 +1,7 @@
 package gh3.events
 
 import gh3._
+import gh3.models.{GH3Sender, GH3Repository, GH3Owner, GH3Commit}
 import net.liftweb.json.JsonAST.{JArray, JValue}
 
 case class PushEvent(

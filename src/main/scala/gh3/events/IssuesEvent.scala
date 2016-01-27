@@ -1,6 +1,7 @@
 package gh3.events
 
 import gh3._
+import gh3.models.{GH3Sender, GH3Repository, GH3Issue}
 import net.liftweb.json.JsonAST.JValue
 
 case class IssuesEvent(

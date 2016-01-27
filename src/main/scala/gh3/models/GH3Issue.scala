@@ -1,6 +1,7 @@
-package gh3
+package gh3.models
 
-import net.liftweb.json.JsonAST.{JNull, JString, JArray, JValue}
+import gh3._
+import net.liftweb.json.JsonAST.{JArray, JNull, JString, JValue}
 import org.joda.time.LocalDateTime
 
 

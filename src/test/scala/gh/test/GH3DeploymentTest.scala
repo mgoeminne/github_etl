@@ -1,6 +1,7 @@
 package gh.test
 
-import gh3.{GH3Deployment, DeleteEvent}
+import gh3.events.DeleteEvent
+import gh3.models.GH3Deployment
 import net.liftweb.json._
 import org.scalatest.{Matchers, FlatSpec}
 

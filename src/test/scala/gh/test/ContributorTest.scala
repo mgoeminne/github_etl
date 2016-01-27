@@ -1,6 +1,6 @@
 package gh.test
 
-import gh3.{Contributor, GH3Base}
+import gh3.models.{GH3Base, Contributor}
 import org.scalatest.{FlatSpec, Matchers}
 import net.liftweb.json._
 

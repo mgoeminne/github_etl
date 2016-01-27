@@ -1,6 +1,6 @@
 package gh3.events
 
-import gh3.{GH3Sender, GH3Repository, GH3Page}
+import gh3.models.{GH3Sender, GH3Repository, GH3Page}
 import net.liftweb.json.JsonAST.{JArray, JValue}
 
 case class GollumEvent( pages: Seq[GH3Page],

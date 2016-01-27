@@ -3,7 +3,7 @@ package gh.test
 
 package gh.test
 
-import gh3.{GH3DeploymentStatus}
+import gh3.models.GH3DeploymentStatus
 import net.liftweb.json._
 import org.scalatest.{Matchers, FlatSpec}
 

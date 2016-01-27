@@ -1,6 +1,6 @@
 package gh3.events
 
-import gh3.{GH3Sender, GH3Repository, GH3Deployment}
+import gh3.models.{GH3Sender, GH3Repository, GH3Deployment}
 import net.liftweb.json.JsonAST.JValue
 
 case class DeploymentEvent(

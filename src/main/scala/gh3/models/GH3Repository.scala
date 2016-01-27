@@ -1,6 +1,6 @@
-package gh3
+package gh3.models
 
-import gh.Main
+import gh3._
 import net.liftweb.json.DefaultFormats
 import net.liftweb.json.JsonAST._
 import org.joda.time.LocalDateTime

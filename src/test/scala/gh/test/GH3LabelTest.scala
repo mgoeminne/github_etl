@@ -1,6 +1,6 @@
 package gh.test
 
-import gh3.{GH3Label}
+import gh3.models.GH3Label
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 

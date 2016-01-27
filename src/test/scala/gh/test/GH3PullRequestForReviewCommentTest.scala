@@ -1,6 +1,6 @@
 package gh.test
 
-import gh3.{GH3PullRequestForReviewComment}
+import gh3.models.GH3PullRequestForReviewComment
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 

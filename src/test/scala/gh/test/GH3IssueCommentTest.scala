@@ -2,7 +2,7 @@ package gh.test
 
 package gh.test
 
-import gh3.{GH3IssueComment}
+import gh3.models.GH3IssueComment
 import org.scalatest.{FlatSpec, Matchers}
 import net.liftweb.json._
 

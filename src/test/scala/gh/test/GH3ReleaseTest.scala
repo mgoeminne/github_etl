@@ -1,6 +1,7 @@
 package gh.test
 
-import gh3.{GH3Release, GH3Page, GH3Forkee, CommitCommentEvent}
+import gh3.events.CommitCommentEvent
+import gh3.models.GH3Release
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 

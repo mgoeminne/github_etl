@@ -1,8 +1,8 @@
 package gh.test
 
+import gh3.models.GH3Sender
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
-import gh3.GH3Sender
 
 class GH3SenderTest extends FlatSpec with Matchers
 {

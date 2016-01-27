@@ -1,6 +1,7 @@
-package gh3
+package gh3.models
 
-import net.liftweb.json.JsonAST.{JString, JValue}
+import gh3._
+import net.liftweb.json.JsonAST.JValue
 
 case class Contributor(name: String, email: String, username: String)
 
