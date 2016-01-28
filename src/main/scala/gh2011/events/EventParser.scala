@@ -1,6 +1,6 @@
 package gh2011.events
 
-import gh2011.models.{CreateEventPayload, WatchEventPayload, PushEventPayload}
+import gh2011.models._
 import net.liftweb.json.JsonAST.JValue
 
 abstract class EventParser[E, P](val name: String)
@@ -28,4 +28,11 @@ object CreateEventParser extends EventParser[CreateEvent, CreateEventPayload]("C
    override def parsePayload(json: JValue): Option[CreateEventPayload] = CreateEventPayload(json)
 
    override def make(event: GH2011EventBody, payload: CreateEventPayload): GH2011Event = CreateEvent(event, payload)
+}
+
+object IssuesEventParser extends EventParser[IssueEvent, IssuesEventPayload]("IssuesEvent")
+{
+   override def parsePayload(json: JValue): Option[IssuesEventPayload] = IssuesEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: IssuesEventPayload): GH2011Event = IssueEvent(event, payload)
 }

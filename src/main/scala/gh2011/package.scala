@@ -7,8 +7,8 @@ package object gh2011
    {
       val parsers = Seq(parser(PushEventParser)(_),
                         parser(WatchEventParser)(_),
-                        parser(CreateEventParser)(_)
-      )
+                        parser(CreateEventParser)(_),
+                        parser(IssuesEventParser)(_))
 
       println(parsers.map(p => p(event)))
 
