@@ -1,10 +1,10 @@
 package gh.test.gh2011
 
-import gh2011.models.Payload
+import gh2011.models.PushEventPayload
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 
-class PayloadTest extends FlatSpec with Matchers
+class PushEventPayloadTest extends FlatSpec with Matchers
 {
    "A valid Payload" must "be correclty parsed" in {
       val json = parse(
@@ -36,6 +36,6 @@ class PayloadTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      Payload(json).isDefined shouldBe true
+      PushEventPayload(json).isDefined shouldBe true
    }
 }

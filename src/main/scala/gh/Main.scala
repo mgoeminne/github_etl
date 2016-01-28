@@ -29,6 +29,7 @@ object Main
 
       val files = directory.listFiles().filter(f => f.getName endsWith ".json.gz")
                                        .filter(f => f.getName startsWith "2011")
+                                       .take(100)
 
       val recorded_projects = scala.collection.mutable.Set[Long]()
       val recorded_contributors = scala.collection.mutable.Set[String]()
@@ -43,12 +44,11 @@ object Main
          buffered.lines.toArray.foreach(line => {
             val json = parse(line.toString)
 
-            //println(line)
 
             json match {
-               case x: JObject => gh3.parse(x) match {
+               case x: JObject => gh2011.parse(x) match {
                   case Some(a) => println(a)
-                  case _ => //println("NOT PARSED: " + x)
+                  case _ => println("NOT PARSED: " + line)
                }
                case _ => "ERROR " + json
             }

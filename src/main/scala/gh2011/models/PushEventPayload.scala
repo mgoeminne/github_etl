@@ -3,12 +3,12 @@ package gh2011.models
 import gh2011.events.{Event, EventParser}
 import net.liftweb.json.JsonAST.{JArray, JValue}
 
-case class Payload(shas: Seq[SHA], repo: String, actor: String,
-                   ref: String, size: Long, head: String, actor_gravatar: String, push_id: Long)
+case class PushEventPayload(shas: Seq[SHA], repo: String, actor: String,
+                            ref: String, size: Long, head: String, actor_gravatar: String, push_id: Long)
 
-object Payload
+object PushEventPayload
 {
-   def apply(json: JValue): Option[Payload] =
+   def apply(json: JValue): Option[PushEventPayload] =
    {
       def n2s = gh3.node2String(json)(_)
       def n2l = gh3.node2Long(json)(_)
@@ -17,7 +17,7 @@ object Payload
          case JArray(x) => Some(x map (e => SHA(gh3.directNode2String(e(0)).get,
                                                 gh3.directNode2String(e(1)).get,
                                                 gh3.directNode2String(e(2)).get)))
-         case _ => None
+         case _ => Some(Seq())
       }
 
       def repo = n2s("repo")
@@ -31,7 +31,7 @@ object Payload
       val params = Seq(shas, repo, actor, ref, size, head, actor_gravatar, push_id)
 
       if(params.forall(_.isDefined))
-         Some(Payload(shas.get, repo.get, actor.get, ref.get, size.get, head.get, actor_gravatar.get, push_id.get))
+         Some(PushEventPayload(shas.get, repo.get, actor.get, ref.get, size.get, head.get, actor_gravatar.get, push_id.get))
       else None
    }
 }
