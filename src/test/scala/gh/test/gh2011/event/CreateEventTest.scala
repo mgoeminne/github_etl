@@ -37,6 +37,35 @@ class CreateEventTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      gh2011.parser(CreateEventParser)(json).isDefined shouldBe true
+      gh2011.parser(CreateEventParser)(json)shouldBe 'defined
+   }
+
+   "An other CreateEvent" must "be correctly parsed" in {
+      val json = parse(
+         """
+           |{
+           |
+           |    "repo":{
+           |        "url":"https://api.github.dev/repos//",
+           |        "name":"/"
+           |    },
+           |    "type":"CreateEvent",
+           |    "public":true,
+           |    "created_at":"2011-02-12T16:42:38Z",
+           |    "payload":{
+           |        "name":"sample_app",
+           |        "object":"repository",
+           |        "object_name":null
+           |    },
+           |    "actor":{
+           |        "url":"https://api.github.dev/users/",
+           |        "avatar_url":"https://secure.gravatar.com/avatar/?d=http://github.dev%2Fimages%2Fgravatars%2Fgravatar-user-420.png"
+           |    },
+           |    "id":"1128246449"
+           |
+           |}
+         """.stripMargin)
+
+      gh2011.parser(CreateEventParser)(json) shouldBe 'defined
    }
 }

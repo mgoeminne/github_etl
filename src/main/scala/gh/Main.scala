@@ -47,7 +47,7 @@ object Main
 
             json match {
                case x: JObject => gh2011.parse(x) match {
-                  case Some(a) => println(a)
+                  case Some(a) => //println(a)
                   case _ => println("NOT PARSED: " + line)
                }
                case _ => "ERROR " + json
