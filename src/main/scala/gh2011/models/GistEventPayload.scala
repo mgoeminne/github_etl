@@ -2,7 +2,7 @@ package gh2011.models
 
 import net.liftweb.json.JsonAST.JValue
 
-case class GistEventPayload(name: String, desc: String, actor: String, url: String, actor_gravatar: String,
+case class GistEventPayload(name: String, desc: Option[String], actor: String, url: String, actor_gravatar: String,
                             snippet: String, action: String)
 
 object GistEventPayload
@@ -14,7 +14,7 @@ object GistEventPayload
       val n2os = gh3.node2OptionString(json)(_)
 
       val name = n2s("name")
-      val desc = n2s("desc")
+      val desc = n2os("desc")
       val actor = n2s("actor")
       val url = n2s("url")
       val actor_gravatar = n2s("actor_gravatar")
