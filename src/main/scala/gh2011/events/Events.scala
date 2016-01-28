@@ -19,3 +19,5 @@ case class PullRequestEvent(event: GH2011EventBody, payload: PullRequestEventPay
 case class DeleteEvent(event: GH2011EventBody, payload: DeleteEventPayload) extends GH2011Event
 
 case class GistEvent(event: GH2011EventBody, payload: GistEventPayload) extends GH2011Event
+
+case class FollowEvent(event: GH2011EventBody, payload: FollowEventPayload) extends GH2011Event
