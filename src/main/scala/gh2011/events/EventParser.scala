@@ -57,3 +57,11 @@ object PullRequestEventParser extends EventParser[PullRequestEvent, PullRequestE
 
    override def make(event: GH2011EventBody, payload: PullRequestEventPayload): GH2011Event = PullRequestEvent(event, payload)
 }
+
+object DeleteEventParser extends EventParser[DeleteEvent, DeleteEventPayload]("DeleteEvent")
+{
+   override def parsePayload(json: JValue): Option[DeleteEventPayload] = DeleteEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: DeleteEventPayload): GH2011Event = DeleteEvent(event, payload)
+}
+

@@ -16,3 +16,4 @@ case class PublicEvent(event: GH2011EventBody, payload: PublicEventPayload) exte
 
 case class PullRequestEvent(event: GH2011EventBody, payload: PullRequestEventPayload) extends GH2011Event
 
+case class DeleteEvent(event: GH2011EventBody, payload: DeleteEventPayload) extends GH2011Event

@@ -6,14 +6,16 @@ package object gh2011
    def parse(event: JValue): Option[GH2011Event] =
    {
       val parsers = Seq(parser(PushEventParser)(_),
-                        parser(WatchEventParser)(_),
-                        parser(CreateEventParser)(_),
-                        parser(IssuesEventParser)(_),
-                        parser(ForkEventParser)(_),
-                        parser(PublicEventParser)(_),
-                        parser(PullRequestEventParser)(_))
+         parser(WatchEventParser)(_),
+         parser(CreateEventParser)(_),
+         parser(IssuesEventParser)(_),
+         parser(ForkEventParser)(_),
+         parser(PublicEventParser)(_),
+         parser(PullRequestEventParser)(_),
+         parser(DeleteEventParser)(_)
+      )
 
-      println(parsers.map(p => p(event)))
+      //println(parsers.map(p => p(event)))
 
       parsers  .toStream
                .flatMap(parser => parser(event))

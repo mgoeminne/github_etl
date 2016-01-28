@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class CreateEventTest extends FlatSpec with Matchers
 {
-   "A valid CreateEvent" must "be correclty parsed" in {
+   "A valid CreateEvent" must "be correctly parsed" in {
       val json = parse(
          """
            | {
