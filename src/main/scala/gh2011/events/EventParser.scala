@@ -92,3 +92,10 @@ object CommitCommentEventParser extends EventParser[CommitCommentEvent, CommitCo
 
    override def make(event: GH2011EventBody, payload: CommitCommentEventPayload): GH2011Event = CommitCommentEvent(event, payload)
 }
+
+object MemberEventParser extends EventParser[MemberEvent, MemberEventPayload]("MemberEvent")
+{
+   override def parsePayload(json: JValue): Option[MemberEventPayload] = MemberEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: MemberEventPayload): GH2011Event = MemberEvent(event, payload)
+}

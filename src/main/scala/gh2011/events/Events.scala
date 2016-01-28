@@ -26,3 +26,5 @@ case class GollumEvent(event: GH2011EventBody, payload: GollumEventPayload) exte
 
 case class CommitCommentEvent(event: GH2011EventBody, payload: CommitCommentEventPayload) extends GH2011Event
 
+case class MemberEvent(event: GH2011EventBody, payload: MemberEventPayload) extends GH2011Event
+
