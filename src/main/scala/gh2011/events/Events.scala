@@ -21,3 +21,6 @@ case class DeleteEvent(event: GH2011EventBody, payload: DeleteEventPayload) exte
 case class GistEvent(event: GH2011EventBody, payload: GistEventPayload) extends GH2011Event
 
 case class FollowEvent(event: GH2011EventBody, payload: FollowEventPayload) extends GH2011Event
+
+case class GollumEvent(event: GH2011EventBody, payload: GollumEventPayload) extends GH2011Event
+

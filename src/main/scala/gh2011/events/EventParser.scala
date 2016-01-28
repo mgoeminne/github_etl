@@ -79,3 +79,9 @@ object FollowEventParser extends EventParser[FollowEvent, FollowEventPayload]("F
    override def make(event: GH2011EventBody, payload: FollowEventPayload): GH2011Event = FollowEvent(event, payload)
 }
 
+object GollumEventParser extends EventParser[GollumEvent, GollumEventPayload]("GollumEvent")
+{
+   override def parsePayload(json: JValue): Option[GollumEventPayload] = GollumEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: GollumEventPayload): GH2011Event = GollumEvent(event, payload)
+}
