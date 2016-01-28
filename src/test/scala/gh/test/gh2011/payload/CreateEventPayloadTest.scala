@@ -6,7 +6,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class CreateEventPayloadTest extends FlatSpec with Matchers
 {
-   "A valid Create Event Payload" must "be correclty parsed" in {
+   "A valid Create Event Payload" must "be correctly parsed" in {
       val json = parse(
          """
            | {
@@ -18,6 +18,6 @@ class CreateEventPayloadTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      CreateEventPayload(json).isDefined shouldBe true
+      CreateEventPayload(json) shouldBe 'defined
    }
 }

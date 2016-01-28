@@ -15,7 +15,8 @@ package object gh2011
          parser(DeleteEventParser)(_),
          parser(GistEventParser)(_),
          parser(FollowEventParser)(_),
-         parser(GollumEventParser)(_)
+         parser(GollumEventParser)(_),
+         parser(CommitCommentEventParser)(_)
       )
 
       //println(parsers.map(p => p(event)))
