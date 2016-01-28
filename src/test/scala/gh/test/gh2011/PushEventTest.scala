@@ -1,6 +1,6 @@
 package gh.test.gh2011
 
-import gh2011.events.PushEvent
+import gh2011.events.{PushEventParser, PushEvent}
 import net.liftweb.json._
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -63,6 +63,6 @@ class PushEventTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      PushEvent(json).isDefined shouldBe true
+      gh2011.parser(PushEventParser)(json).isDefined shouldBe true
    }
 }

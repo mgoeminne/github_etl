@@ -1,6 +1,5 @@
 package gh2011.models
 
-import gh2011.events.{Event, EventParser}
 import net.liftweb.json.JsonAST.JValue
 
 case class Repository(url: String, name: String)

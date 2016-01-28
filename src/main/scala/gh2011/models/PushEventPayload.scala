@@ -1,6 +1,5 @@
 package gh2011.models
 
-import gh2011.events.{Event, EventParser}
 import net.liftweb.json.JsonAST.{JArray, JValue}
 
 case class PushEventPayload(shas: Seq[SHA], repo: String, actor: String,

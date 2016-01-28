@@ -1,6 +1,6 @@
 package gh.test.gh2011
 
-import gh2011.events.WatchEvent
+import gh2011.events.{WatchEventParser, WatchEvent}
 import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
 
@@ -45,6 +45,6 @@ class WatchEventTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      WatchEvent(json).isDefined shouldBe true
+      gh2011.parser(WatchEventParser)(json).isDefined shouldBe true
    }
 }
