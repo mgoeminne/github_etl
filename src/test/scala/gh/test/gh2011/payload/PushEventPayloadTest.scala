@@ -1,8 +1,8 @@
-package gh.test.gh2011
+package gh.test.gh2011.payload
 
 import gh2011.models.PushEventPayload
-import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
+import org.scalatest.{FlatSpec, Matchers}
 
 class PushEventPayloadTest extends FlatSpec with Matchers
 {

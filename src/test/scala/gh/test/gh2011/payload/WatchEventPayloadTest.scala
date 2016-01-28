@@ -1,8 +1,8 @@
-package gh.test.gh2011
+package gh.test.gh2011.payload
 
 import gh2011.models.WatchEventPayload
-import org.scalatest.{Matchers, FlatSpec}
 import net.liftweb.json._
+import org.scalatest.{FlatSpec, Matchers}
 
 
 class WatchEventPayloadTest extends FlatSpec with Matchers

@@ -1,6 +1,6 @@
-package gh.test.gh2011
+package gh.test.gh2011.event
 
-import gh2011.events.{PushEventParser, PushEvent}
+import gh2011.events.PushEventParser
 import net.liftweb.json._
 import org.scalatest.{FlatSpec, Matchers}
 

@@ -1,8 +1,8 @@
-package gh.test.gh2011
+package gh.test.gh2011.event
 
-import gh2011.events.{CreateEventParser, WatchEventParser, WatchEvent}
-import org.scalatest.{Matchers, FlatSpec}
+import gh2011.events.CreateEventParser
 import net.liftweb.json._
+import org.scalatest.{FlatSpec, Matchers}
 
 
 class CreateEventTest extends FlatSpec with Matchers
