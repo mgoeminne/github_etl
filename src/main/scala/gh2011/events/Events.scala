@@ -30,4 +30,7 @@ case class MemberEvent(event: GH2011EventBody, payload: MemberEventPayload) exte
 
 case class DownloadEvent(event: GH2011EventBody, payload: DownloadEventPayload) extends GH2011Event
 
+case class ForkApplyEvent(event: GH2011EventBody, payload: ForkApplyEventPayload) extends GH2011Event
+
+
 

@@ -3,9 +3,6 @@ import net.liftweb.json.JsonAST._
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
 
-/**
-  * Created by mg on 15/01/16.
-  */
 package object gh3
 {
    val formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
@@ -23,6 +20,7 @@ package object gh3
       (node\tag) match {
          case JString(x) => Some(Some(x))
          case JNull => Some(None)
+         case JNothing => Some(None)
          case _ => None
       }
    }

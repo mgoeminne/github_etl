@@ -2,8 +2,8 @@ package gh2011.models
 
 import net.liftweb.json.JsonAST.JValue
 
-case class GollumEventPayload(title: String, summary: Option[String], repo: String, sha: String, actor: String,
-                              page_name: String, actor_gravatar: String, action: String)
+case class GollumEventPayload(title: String, summary: Option[String], repo: String, sha: String, actor: Option[String],
+                              page_name: String, actor_gravatar: Option[String], action: String)
 
 object GollumEventPayload
 {
@@ -17,9 +17,9 @@ object GollumEventPayload
       val summary = n2os("summary")
       val repo = n2s("repo")
       val sha = n2s("sha")
-      val actor = n2s("actor")
+      val actor = n2os("actor")
       val page_name = n2s("page_name")
-      val actor_gravatar = n2s("actor_gravatar")
+      val actor_gravatar = n2os("actor_gravatar")
       val action = n2s("action")
 
       val params = Seq(title, summary, repo, sha, actor, page_name, actor_gravatar, action)

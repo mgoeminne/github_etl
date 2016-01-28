@@ -107,4 +107,11 @@ object DownloadEventParser extends EventParser[DownloadEvent, DownloadEventPaylo
    override def make(event: GH2011EventBody, payload: DownloadEventPayload): GH2011Event = DownloadEvent(event, payload)
 }
 
+object ForkApplyEventParser extends EventParser[ForkApplyEvent, ForkApplyEventPayload]("ForkApplyEvent")
+{
+   override def parsePayload(json: JValue): Option[ForkApplyEventPayload] = ForkApplyEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: ForkApplyEventPayload): GH2011Event = ForkApplyEvent(event, payload)
+}
+
 
