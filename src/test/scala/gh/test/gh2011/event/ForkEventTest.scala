@@ -1,12 +1,12 @@
 package gh.test.gh2011.event
 
-import gh2011.events.{ForkEventParser, IssuesEventParser, PushEventParser}
+import gh2011.events.ForkEventParser
 import net.liftweb.json._
 import org.scalatest.{FlatSpec, Matchers}
 
 
 
-class IssuesEventTest extends FlatSpec with Matchers
+class ForkEventTest extends FlatSpec with Matchers
 {
    "A valid ForkEvent" must "be correctly parsed" in {
       val json = parse(

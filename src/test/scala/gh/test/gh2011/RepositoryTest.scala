@@ -8,7 +8,7 @@ import net.liftweb.json._
 
 class RepositoryTest extends FlatSpec with Matchers
 {
-   "A valid Repository" must "be correclty parsed" in {
+   "A valid Repository" must "be correctly parsed" in {
       val json = parse(
          """
            | {
@@ -20,6 +20,6 @@ class RepositoryTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      Repository(json).isDefined shouldBe true
+      Repository(json) shouldBe 'defined
    }
 }

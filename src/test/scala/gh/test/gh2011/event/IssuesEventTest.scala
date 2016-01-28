@@ -1,6 +1,6 @@
 package gh.test.gh2011.event
 
-import gh2011.events.{IssuesEventParser, PushEventParser}
+import gh2011.events.IssuesEventParser
 import net.liftweb.json._
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -8,7 +8,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class IssuesEventTest extends FlatSpec with Matchers
 {
-   "A valid IssueEvent" must "be correctly parsed" in {
+   "A valid IssuesEvent" must "be correctly parsed" in {
       val json = parse(
          """
            | {

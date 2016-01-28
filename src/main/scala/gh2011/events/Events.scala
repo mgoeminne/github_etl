@@ -14,3 +14,5 @@ case class ForkEvent(event: GH2011EventBody, payload: ForkEventPayload) extends 
 
 case class PublicEvent(event: GH2011EventBody, payload: PublicEventPayload) extends GH2011Event
 
+case class PullRequestEvent(event: GH2011EventBody, payload: PullRequestEventPayload) extends GH2011Event
+

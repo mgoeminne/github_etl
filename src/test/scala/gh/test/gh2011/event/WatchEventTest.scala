@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class WatchEventTest extends FlatSpec with Matchers
 {
-   "A valid WatchEventPayload" must "be correclty parsed" in {
+   "A valid WatchEvent" must "be correctly parsed" in {
       val json = parse(
          """
            | {

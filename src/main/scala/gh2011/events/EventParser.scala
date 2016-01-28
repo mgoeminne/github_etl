@@ -50,3 +50,10 @@ object PublicEventParser extends EventParser[PublicEvent, PublicEventPayload]("P
 
    override def make(event: GH2011EventBody, payload: PublicEventPayload): GH2011Event = PublicEvent(event, payload)
 }
+
+object PullRequestEventParser extends EventParser[PullRequestEvent, PullRequestEventPayload]("PullRequestEvent")
+{
+   override def parsePayload(json: JValue): Option[PullRequestEventPayload] = PullRequestEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: PullRequestEventPayload): GH2011Event = PullRequestEvent(event, payload)
+}
