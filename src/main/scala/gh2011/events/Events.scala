@@ -10,3 +10,5 @@ case class CreateEvent(event: GH2011EventBody, payload: CreateEventPayload) exte
 
 case class IssueEvent(event: GH2011EventBody, payload: IssuesEventPayload) extends GH2011Event
 
+case class ForkEvent(event: GH2011EventBody, payload: ForkEventPayload) extends GH2011Event
+
