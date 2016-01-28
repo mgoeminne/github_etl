@@ -99,3 +99,12 @@ object MemberEventParser extends EventParser[MemberEvent, MemberEventPayload]("M
 
    override def make(event: GH2011EventBody, payload: MemberEventPayload): GH2011Event = MemberEvent(event, payload)
 }
+
+object DownloadEventParser extends EventParser[DownloadEvent, DownloadEventPayload]("DownloadEvent")
+{
+   override def parsePayload(json: JValue): Option[DownloadEventPayload] = DownloadEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: DownloadEventPayload): GH2011Event = DownloadEvent(event, payload)
+}
+
+

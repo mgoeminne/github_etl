@@ -28,3 +28,6 @@ case class CommitCommentEvent(event: GH2011EventBody, payload: CommitCommentEven
 
 case class MemberEvent(event: GH2011EventBody, payload: MemberEventPayload) extends GH2011Event
 
+case class DownloadEvent(event: GH2011EventBody, payload: DownloadEventPayload) extends GH2011Event
+
+
