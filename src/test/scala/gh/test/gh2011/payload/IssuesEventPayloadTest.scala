@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class IssuesEventPayloadTest extends FlatSpec with Matchers
 {
-   "A valid IssuesEvent payload" must "be correclty parsed" in {
+   "A valid IssuesEvent payload" must "be correctly parsed" in {
       val json = parse(
          """
            | {
@@ -22,6 +22,6 @@ class IssuesEventPayloadTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      IssuesEventPayload(json).isDefined shouldBe true
+      IssuesEventPayload(json) shouldBe 'defined
    }
 }

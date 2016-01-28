@@ -12,7 +12,8 @@ package object gh2011
          parser(ForkEventParser)(_),
          parser(PublicEventParser)(_),
          parser(PullRequestEventParser)(_),
-         parser(DeleteEventParser)(_)
+         parser(DeleteEventParser)(_),
+         parser(GistEventParser)(_)
       )
 
       //println(parsers.map(p => p(event)))
