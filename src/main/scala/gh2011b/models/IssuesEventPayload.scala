@@ -2,8 +2,7 @@ package gh2011b.models
 
 import net.liftweb.json.JsonAST.JValue
 
-case class IssuesEventPayload(number: Long, repo: String, actor: String, issue: Long,
-                              actor_gravatar: String, action: String)
+case class IssuesEventPayload(number: Long, issue: Long, action: String)
 
 object IssuesEventPayload
 {
@@ -14,16 +13,12 @@ object IssuesEventPayload
       val n2os = gh3.node2OptionString(json)(_)
 
       val number = n2l("number")
-      val repo = n2s("repo")
-      val actor = n2s("actor")
       val issue = n2l("issue")
-      val actor_gravatar = n2s("actor_gravatar")
       val action = n2s("action")
 
-      val params = Seq(number, repo, actor, issue, actor_gravatar, action)
+      val params = Seq(number, issue, action)
 
-      if(params.forall(_.isDefined))
-         Some(IssuesEventPayload(number.get, repo.get, actor.get, issue.get, actor_gravatar.get, action.get))
+      if(params.forall(_.isDefined)) Some(IssuesEventPayload(number.get, issue.get, action.get))
       else None
    }
 }
