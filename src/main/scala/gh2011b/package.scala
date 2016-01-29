@@ -1,12 +1,13 @@
-import gh2011.events._
+import gh2011.events.GH2011EventBody
+import gh2011b.events._
 import net.liftweb.json.JsonAST.JValue
 
-package object gh2011
+package object gh2011b
 {
-   def parse(event: JValue): Option[GH2011Event] =
+   def parse(event: JValue): Option[GH2011bEvent] =
    {
-      val parsers = Seq(parser(
-         PushEventParser)(_),
+      val parsers = Seq(
+         parser(PushEventParser)(_),
          parser(WatchEventParser)(_),
          parser(CreateEventParser)(_),
          parser(IssuesEventParser)(_),
@@ -21,17 +22,16 @@ package object gh2011
          parser(MemberEventParser)(_),
          parser(DownloadEventParser)(_),
          parser(ForkApplyEventParser)(_),
-         parser(IssueCommentEventParser)(_)
-      )
+         parser(IssueCommentEventParser)(_))
 
       //println(parsers.map(p => p(event)))
 
       parsers  .toStream
-               .flatMap(parser => parser(event))
-               .headOption
+         .flatMap(parser => parser(event))
+         .headOption
    }
 
-   def parser[E,P](e: EventParser[E,P])(json: JValue): Option[GH2011Event] =
+   def parser[E,P](e: EventParser[E,P])(json: JValue): Option[GH2011bEvent] =
    {
       val `type` = gh3.node2String(json)("type")
       if(`type`.isEmpty || `type`.get != e.name) return None

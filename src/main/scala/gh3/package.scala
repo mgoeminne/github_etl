@@ -20,7 +20,6 @@ package object gh3
       case _ => None
    }
 
-
    def node2OptionString(node: JValue)(tag: String): Option[Option[String]] =
    {
       (node\tag) match {
@@ -61,13 +60,22 @@ package object gh3
       }
    }
 
+   def node2OptionLong(node: JValue)(tag: String): Option[Option[Long]] =
+   {
+      (node\tag) match {
+         case JNull => Some(None)
+         case JNothing => Some(None)
+         case JInt(x) => Some(Some(x.toLong))
+         case _ => None
+      }
+   }
+
+
    def parse(event: JValue): Option[GH3Event] =
    {
       val parsers = Seq(CommitCommentEvent, CreateEvent, DeleteEvent, DeploymentEvent, DeploymentStatusEvent, ForkEvent,
          GollumEvent, IssueCommentEvent, IssuesEvent, MemberEvent, MembershipEvent, PageBuildEvent, PublicEvent,
          PullRequestEvent, PullRequestReviewCommentEvent, PushEvent, ReleaseEvent, RepositoryEvent, WatchEvent)
-
-      //println(parsers.map(p => p(event)))
 
       parsers  .toStream
                .flatMap(parser => parser(event))

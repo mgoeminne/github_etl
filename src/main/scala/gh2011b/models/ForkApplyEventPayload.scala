@@ -1,4 +1,4 @@
-package gh2011.models
+package gh2011b.models
 
 import net.liftweb.json.JsonAST.JValue
 

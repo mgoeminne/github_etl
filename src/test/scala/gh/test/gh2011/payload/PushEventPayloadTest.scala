@@ -6,7 +6,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class PushEventPayloadTest extends FlatSpec with Matchers
 {
-   "A valid Payload" must "be correclty parsed" in {
+   "A valid PushEvent payload" must "be correctly parsed" in {
       val json = parse(
          """
            | {
@@ -36,6 +36,6 @@ class PushEventPayloadTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      PushEventPayload(json).isDefined shouldBe true
+      PushEventPayload(json) shouldBe 'defined
    }
 }
