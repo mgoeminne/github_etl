@@ -4,8 +4,7 @@ import gh2011.models.PullRequest
 import net.liftweb.json.JsonAST.JValue
 
 
-case class PullRequestEventPayload(number: Long, pull_request: PullRequest, repo: String, actor: String,
-                                   actor_gravatar: String, action: String)
+case class PullRequestEventPayload(number: Long, pull_request: PullRequest, action: String)
 
 object PullRequestEventPayload
 {
@@ -17,15 +16,12 @@ object PullRequestEventPayload
 
       val number = n2l("number")
       val pull_request = PullRequest(json \ "pull_request")
-      val repo = n2s("repo")
-      val actor = n2s("actor")
-      val actor_gravatar = n2s("actor_gravatar")
       val action = n2s("action")
 
-      val params = Seq(number, pull_request, repo, actor, actor_gravatar, action)
+      val params = Seq(number, pull_request, action)
 
       if(params.forall(_.isDefined))
-         Some(PullRequestEventPayload(number.get, pull_request.get, repo.get, actor.get, actor_gravatar.get, action.get))
+         Some(PullRequestEventPayload(number.get, pull_request.get, action.get))
       else None
    }
 }

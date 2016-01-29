@@ -55,7 +55,7 @@ object Main
             valid_lines += 1
 
             json match {
-               case x: JObject => gh2011.parse(x) match {
+               case x: JObject => gh2011b.parse(x) match {
                   case Some(a) => parsed_lines += 1
                   case _ => println("NOT PARSED: " + line)
                }

@@ -47,4 +47,46 @@ class PushEventTest extends FlatSpec with Matchers
 
       gh2011b.parser(PushEventParser)(json) shouldBe 'defined
    }
+
+   "An other valid PushEvent" must "be correctly parsed" in {
+      val json = parse(
+         """
+           | {
+           |
+           |    "repo":{
+           |        "id":1629207,
+           |        "url":"https://api.github.dev/repos/dxgriffiths/JS11",
+           |        "name":"dxgriffiths/JS11"
+           |    },
+           |    "type":"PushEvent",
+           |    "public":true,
+           |    "created_at":"2011-05-26T01:38:51Z",
+           |    "payload":{
+           |        "shas":[
+           |            [
+           |                "a49c96e552524491c9e890f368709ab7d3997354",
+           |                "dxgriffiths@gmail.com",
+           |                ".js file now beautified",
+           |                "David Griffiths"
+           |            ]
+           |        ],
+           |        "ref":"refs/heads/master",
+           |        "size":1,
+           |        "head":"a49c96e552524491c9e890f368709ab7d3997354",
+           |        "push_id":32316276
+           |    },
+           |    "actor":{
+           |        "gravatar_id":"d974b01285cbd1d4aca66f1cffd03ce3",
+           |        "id":237700,
+           |        "url":"https://api.github.dev/users/dxgriffiths",
+           |        "avatar_url":"https://secure.gravatar.com/avatar/d974b01285cbd1d4aca66f1cffd03ce3?d=http://github.dev%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
+           |        "login":"dxgriffiths"
+           |    },
+           |    "id":"1470778334"
+           |
+           |}
+         """.stripMargin)
+
+      gh2011b.parser(PushEventParser)(json) shouldBe 'defined
+   }
 }

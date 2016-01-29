@@ -25,7 +25,6 @@ object PushEventPayload
 
       val params = Seq(shas, ref, size, head, push_id)
 
-
       if(params.forall(_.isDefined)) Some(PushEventPayload(shas.get, ref.get, size.get, head.get, push_id.get))
       else None
    }
