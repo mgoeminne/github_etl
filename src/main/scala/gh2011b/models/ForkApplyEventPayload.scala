@@ -2,8 +2,7 @@ package gh2011b.models
 
 import net.liftweb.json.JsonAST.JValue
 
-case class ForkApplyEventPayload(repo: String, actor: String, head: String, original: String, actor_gravatar: String,
-                                 commit: String)
+case class ForkApplyEventPayload(head: String, after: String, before: String)
 
 object ForkApplyEventPayload
 {
@@ -12,17 +11,13 @@ object ForkApplyEventPayload
       def n2s = gh3.node2String(json)(_)
       def n2l = gh3.node2Long(json)(_)
 
-      val repo = n2s("repo")
-      val actor = n2s("actor")
       val head = n2s("head")
-      val original = n2s("original")
-      val actor_gravatar = n2s("actor_gravatar")
-      val commit = n2s("commit")
+      val after = n2s("after")
+      val before = n2s("before")
 
-      val params = Seq(repo, actor, head, original, actor_gravatar, commit)
+      val params = Seq(head, after, before)
 
-      if(params.forall(_.isDefined))
-         Some(ForkApplyEventPayload(repo.get, actor.get, head.get, original.get, actor_gravatar.get, commit.get))
+      if(params.forall(_.isDefined)) Some(ForkApplyEventPayload(head.get, after.get, before.get))
       else None
    }
 }
