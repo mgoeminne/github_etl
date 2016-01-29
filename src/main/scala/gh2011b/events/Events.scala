@@ -25,6 +25,8 @@ case class FollowEvent(event: GH2011EventBody, payload: FollowEventPayload) exte
 
 case class GollumEvent(event: GH2011EventBody, payload: GollumEventPayload) extends GH2011bEvent
 
+case class MultiGollumEvent(event: GH2011EventBody, payload: MultiGollumEventPayload) extends GH2011bEvent
+
 case class CommitCommentEvent(event: GH2011EventBody, payload: CommitCommentEventPayload) extends GH2011bEvent
 
 case class MemberEvent(event: GH2011EventBody, payload: MemberEventPayload) extends GH2011bEvent

@@ -10,13 +10,6 @@ abstract class EventParser[E, P](val name: String)
    def make(event: GH2011EventBody, payload: P): GH2011bEvent
 }
 
-object BasicEventParser extends EventParser[PushEvent, BasicEventPayload]("Event")
-{
-   override def parsePayload(json: JValue): Option[BasicEventPayload] = BasicEventPayload(json)
-
-   override def make(event: GH2011EventBody, payload: BasicEventPayload): BasicEvent = BasicEvent(event, payload)
-}
-
 object PushEventParser extends EventParser[PushEvent, PushEventPayload]("PushEvent")
 {
    override def parsePayload(json: JValue): Option[PushEventPayload] = PushEventPayload(json)
@@ -93,6 +86,14 @@ object GollumEventParser extends EventParser[GollumEvent, GollumEventPayload]("G
 
    override def make(event: GH2011EventBody, payload: GollumEventPayload): GH2011bEvent = GollumEvent(event, payload)
 }
+
+object MultiGollumEventParser extends EventParser[MultiGollumEvent, MultiGollumEventPayload]("GollumEvent")
+{
+   override def parsePayload(json: JValue): Option[MultiGollumEventPayload] = MultiGollumEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: MultiGollumEventPayload): GH2011bEvent = MultiGollumEvent(event, payload)
+}
+
 
 object CommitCommentEventParser extends EventParser[CommitCommentEvent, CommitCommentEventPayload]("CommitCommentEvent")
 {

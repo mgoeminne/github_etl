@@ -3,8 +3,7 @@ package gh2011b.models
 import net.liftweb.json.JsonAST.{JArray, JValue}
 
 
-case class BasicEventPayload(shas: Seq[Seq[Option[String]]], repo: String, actor: String, ref: String, size: Long,
-                             head: String, actor_gravatar: String, push_id: Long)
+case class BasicEventPayload(repo: String, actor: String, actor_gravatar: String)
 
 object BasicEventPayload
 {
@@ -25,17 +24,11 @@ object BasicEventPayload
 
       val repo = n2s("repo")
       val actor = n2s("actor")
-      val ref = n2s("ref")
-      val size = n2l("size")
-      val head = n2s("head")
       val actor_gravatar = n2s("actor_gravatar")
-      val push_id = n2l("push_id")
 
-      val params = Seq(repo, actor, ref, size, head, actor_gravatar, push_id)
+      val params = Seq(repo, actor, actor_gravatar)
 
-      if(params.forall(_.isDefined))
-         Some(BasicEventPayload(shas, repo.get, actor.get, ref.get, size.get, head.get, actor_gravatar.get,
-            push_id.get))
+      if(params.forall(_.isDefined)) Some(BasicEventPayload(repo.get, actor.get, actor_gravatar.get))
       else None
    }
 }
