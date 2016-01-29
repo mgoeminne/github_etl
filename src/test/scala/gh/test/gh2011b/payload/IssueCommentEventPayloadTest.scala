@@ -1,6 +1,6 @@
 package gh.test.gh2011b.payload
 
-import gh2011b.models.{IssueCommentEventPayload, PushEventPayload}
+import gh2011b.models.IssueCommentEventPayload
 import net.liftweb.json._
 import org.scalatest.{Matchers, FlatSpec}
 

@@ -3,7 +3,7 @@ package gh2011b.models
 import gh2011.models.FollowEventTarget
 import net.liftweb.json.JsonAST.JValue
 
-case class FollowEventPayload(target: FollowEventTarget, actor: String, actor_gravatar: String)
+case class FollowEventPayload(target: FollowEventTarget)
 
 object FollowEventPayload
 {
@@ -14,11 +14,8 @@ object FollowEventPayload
       val n2os = gh3.node2OptionString(json)(_)
 
       val target = FollowEventTarget(json \ "target")
-      val actor = n2s("actor")
-      val actor_gravatar = n2s("actor_gravatar")
 
-      if(Seq(target, actor, actor_gravatar).forall(_.isDefined))
-         Some(FollowEventPayload(target.get, actor.get, actor_gravatar.get))
+      if(target.isDefined) Some(FollowEventPayload(target.get))
       else None
    }
 }
