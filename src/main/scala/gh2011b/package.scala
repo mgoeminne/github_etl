@@ -34,6 +34,7 @@ package object gh2011b
    def parser[E,P](e: EventParser[E,P])(json: JValue): Option[GH2011bEvent] =
    {
       val `type` = gh3.node2String(json)("type")
+
       if(`type`.isEmpty || `type`.get != e.name) return None
 
       val event = GH2011EventBody(json)
