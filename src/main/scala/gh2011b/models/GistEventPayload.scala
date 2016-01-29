@@ -2,8 +2,7 @@ package gh2011b.models
 
 import net.liftweb.json.JsonAST.JValue
 
-case class GistEventPayload(name: String, desc: Option[String], actor: String, url: String, actor_gravatar: String,
-                            snippet: String, action: String)
+case class GistEventPayload(name: String, desc: Option[String], id: Long, url: String, action: String)
 
 object GistEventPayload
 {
@@ -15,16 +14,15 @@ object GistEventPayload
 
       val name = n2s("name")
       val desc = n2os("desc")
-      val actor = n2s("actor")
+      val id = n2l("id")
       val url = n2s("url")
-      val actor_gravatar = n2s("actor_gravatar")
-      val snippet = n2s("snippet")
       val action = n2s("action")
 
-      val params = Seq(name, desc, actor, url, actor_gravatar, snippet, action)
+      val params = Seq(name, desc, id, url, action)
 
+      println(params.map(_.isDefined))
       if(params.forall(_.isDefined))
-         Some(GistEventPayload(name.get, desc.get, actor.get, url.get, actor_gravatar.get, snippet.get, action.get))
+         Some(GistEventPayload(name.get, desc.get, id.get, url.get, action.get))
       else None
    }
 }
