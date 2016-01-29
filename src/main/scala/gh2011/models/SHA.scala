@@ -1,3 +1,3 @@
 package gh2011.models
 
-case class SHA(id: String, mail: String, message: String)
+case class SHA(id: Option[String], mail: Option[String], message: Option[String])

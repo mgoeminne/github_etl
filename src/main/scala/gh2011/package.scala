@@ -19,7 +19,8 @@ package object gh2011
          parser(CommitCommentEventParser)(_),
          parser(MemberEventParser)(_),
          parser(DownloadEventParser)(_),
-         parser(ForkApplyEventParser)(_)
+         parser(ForkApplyEventParser)(_),
+         parser(IssueCommentEventParser)(_)
       )
 
       //println(parsers.map(p => p(event)))

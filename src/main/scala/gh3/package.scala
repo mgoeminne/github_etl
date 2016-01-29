@@ -14,6 +14,12 @@ package object gh3
       case _ => None
    }
 
+   def directNode2OptionString(node: JValue): Option[Option[String]] = node match {
+      case JString(x) => Some(Some(x))
+      case JNull => Some(None)
+      case _ => None
+   }
+
 
    def node2OptionString(node: JValue)(tag: String): Option[Option[String]] =
    {

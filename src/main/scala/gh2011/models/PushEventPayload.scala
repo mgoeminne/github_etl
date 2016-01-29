@@ -13,9 +13,9 @@ object PushEventPayload
       def n2l = gh3.node2Long(json)(_)
 
       def shas = (json \ "shas") match {
-         case JArray(x) => Some(x map (e => SHA(gh3.directNode2String(e(0)).get,
-                                                gh3.directNode2String(e(1)).get,
-                                                gh3.directNode2String(e(2)).get)))
+         case JArray(x) => Some(x map (e => SHA(gh3.directNode2OptionString(e(0)).get,
+                                                gh3.directNode2OptionString(e(1)).get,
+                                                gh3.directNode2OptionString(e(2)).get)))
          case _ => Some(Seq())
       }
 

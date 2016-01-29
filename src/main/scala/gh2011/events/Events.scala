@@ -32,5 +32,8 @@ case class DownloadEvent(event: GH2011EventBody, payload: DownloadEventPayload) 
 
 case class ForkApplyEvent(event: GH2011EventBody, payload: ForkApplyEventPayload) extends GH2011Event
 
+case class IssueCommentEvent(event: GH2011EventBody, payload: IssueCommentEventPayload) extends GH2011Event
+
+
 
 
