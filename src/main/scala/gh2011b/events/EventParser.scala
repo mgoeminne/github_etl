@@ -10,6 +10,13 @@ abstract class EventParser[E, P](val name: String)
    def make(event: GH2011EventBody, payload: P): GH2011bEvent
 }
 
+object BasicEventParser extends EventParser[PushEvent, BasicEventPayload]("Event")
+{
+   override def parsePayload(json: JValue): Option[BasicEventPayload] = BasicEventPayload(json)
+
+   override def make(event: GH2011EventBody, payload: BasicEventPayload): BasicEvent = BasicEvent(event, payload)
+}
+
 object PushEventParser extends EventParser[PushEvent, PushEventPayload]("PushEvent")
 {
    override def parsePayload(json: JValue): Option[PushEventPayload] = PushEventPayload(json)
