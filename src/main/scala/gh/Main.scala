@@ -29,7 +29,7 @@ object Main
 
       val files = directory.listFiles().filter(f => f.getName endsWith ".json.gz")
                                        .filter(f => f.getName startsWith "2011")
-                                       .dropWhile(f => !(f.getName startsWith "2011-05-25"))
+                                       .dropWhile(f => !(f.getName startsWith "2011-10-07"))
 
       val recorded_projects = scala.collection.mutable.Set[Long]()
       val recorded_contributors = scala.collection.mutable.Set[String]()
