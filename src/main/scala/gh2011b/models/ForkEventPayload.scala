@@ -10,8 +10,6 @@ object ForkEventPayload
    {
       val forkee = Forkee(json \ "forkee")
 
-      println(forkee.isDefined)
-
       if(forkee.isDefined) Some(ForkEventPayload(forkee.get))
       else None
    }

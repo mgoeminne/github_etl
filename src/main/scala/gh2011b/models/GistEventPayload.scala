@@ -20,9 +20,7 @@ object GistEventPayload
 
       val params = Seq(name, desc, id, url, action)
 
-      println(params.map(_.isDefined))
-      if(params.forall(_.isDefined))
-         Some(GistEventPayload(name.get, desc.get, id.get, url.get, action.get))
+      if(params.forall(_.isDefined)) Some(GistEventPayload(name.get, desc.get, id.get, url.get, action.get))
       else None
    }
 }
