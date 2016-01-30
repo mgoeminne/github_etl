@@ -1,5 +1,6 @@
 package gh2013.events
 
+import gh2013.models.EventBody
 import gh2013.payloads._
 import net.liftweb.json.JsonAST.JValue
 

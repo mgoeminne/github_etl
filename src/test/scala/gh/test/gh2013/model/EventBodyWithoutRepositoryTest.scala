@@ -1,6 +1,6 @@
 package gh.test.gh2013.model
 
-import gh2013.events.EventBodyWithoutRepository
+import gh2013.models.EventBodyWithoutRepository
 import net.liftweb.json._
 import org.scalatest.{FlatSpec, Matchers}
 

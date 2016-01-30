@@ -1,4 +1,5 @@
 import gh2013.events._
+import gh2013.models.EventBody
 import net.liftweb.json.JsonAST.JValue
 
 package object gh2013

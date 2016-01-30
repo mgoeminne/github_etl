@@ -1,5 +1,6 @@
 package gh2013.events
 
+import gh2013.models.EventBody
 import gh2013.payloads._
 
 case class PushEvent(event: EventBody, payload: PushEventPayload) extends GH2013Event

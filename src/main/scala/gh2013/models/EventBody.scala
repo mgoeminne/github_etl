@@ -1,5 +1,6 @@
-package gh2013.events
+package gh2013.models
 
+import gh2013.events.{ActorAttributes, Repository}
 import net.liftweb.json.JsonAST.JValue
 import org.joda.time.LocalDateTime
 
