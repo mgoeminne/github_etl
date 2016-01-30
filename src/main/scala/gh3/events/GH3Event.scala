@@ -3,4 +3,4 @@ package gh3.events
 /**
   * An event for Github v3
   */
-trait GH3Event
+trait GH3Event extends gh.GHEvent

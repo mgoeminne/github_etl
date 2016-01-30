@@ -1,6 +1,3 @@
 package gh2011c.events
 
-class GH2011cEvent
-{
-
-}
+trait GH2011cEvent extends gh.GHEvent

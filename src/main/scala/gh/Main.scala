@@ -28,8 +28,8 @@ object Main
    {
 
       val files = directory.listFiles().filter(f => f.getName endsWith ".json.gz")
-                                       .filter(f => f.getName startsWith "2011")
-                                       .dropWhile(f => !(f.getName startsWith "2011-10-07"))
+                                       .filter(f => f.getName startsWith "2013")
+                                       //.dropWhile(f => !(f.getName startsWith "2011-10-07"))
 
       val recorded_projects = scala.collection.mutable.Set[Long]()
       val recorded_contributors = scala.collection.mutable.Set[String]()
@@ -37,6 +37,10 @@ object Main
       var read_lines = 0L
       var valid_lines = 0L
       var parsed_lines = 0L
+
+      val parsers = Stream(gh3.parse(_), gh2011.parse(_), gh2011b.parse(_), gh2011c.parse(_))
+
+      def parseJSON(json: JValue): Option[GHEvent] = parsers.flatMap(p => p(json)).headOption
 
       files.foreach(file => {
          logger.debug("Reading file " + file)
@@ -55,7 +59,7 @@ object Main
             valid_lines += 1
 
             json match {
-               case x: JObject => gh2011b.parse(x) match {
+               case x: JObject => parseJSON(x) match {
                   case Some(a) => parsed_lines += 1
                   case _ => println("NOT PARSED: " + line)
                }
