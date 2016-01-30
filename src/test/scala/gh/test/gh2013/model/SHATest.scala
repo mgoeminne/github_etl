@@ -1,6 +1,7 @@
 package gh.test.gh2013.model
 
-import gh2013.payloads.{SHA, FollowEventPayload}
+import gh2013.models.SHA
+import gh2013.payloads.FollowEventPayload
 import net.liftweb.json._
 import org.scalatest.{Matchers, FlatSpec}
 

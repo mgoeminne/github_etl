@@ -6,8 +6,8 @@ package object gh2013
    def parse(event: JValue): Option[GH2013Event] =
    {
       val parsers = Seq(
-         //parser(PushEventParser)(_),
-        // parser(WatchEventParser)(_),
+         parser(PushEventParser)(_),
+         parser(WatchEventParser)(_),
         // parser(CreateEventParser)(_),
            parser(IssuesEventParser)(_),
         // parser(ForkEventParser)(_),

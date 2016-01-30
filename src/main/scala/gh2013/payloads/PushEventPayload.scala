@@ -1,5 +1,6 @@
 package gh2013.payloads
 
+import gh2013.models.SHA
 import net.liftweb.json.JsonAST.{JArray, JValue}
 
 case class PushEventPayload(size: Long, shas: Seq[SHA], ref: String, head: String)

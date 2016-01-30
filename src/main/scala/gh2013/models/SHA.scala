@@ -1,6 +1,6 @@
-package gh2013.payloads
+package gh2013.models
 
-import net.liftweb.json.JsonAST.{JValue, JArray}
+import net.liftweb.json.JsonAST.{JArray, JValue}
 
 case class SHA(id: String, email: String, comment: String, author: String, unknown: Boolean)
 

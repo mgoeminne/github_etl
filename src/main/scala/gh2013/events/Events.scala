@@ -4,7 +4,7 @@ import gh2013.payloads._
 
 case class PushEvent(event: EventBody, payload: PushEventPayload) extends GH2013Event
 
-//case class WatchEvent(event: EventBody, payload: WatchEventPayload) extends GH2013Event
+case class WatchEvent(event: EventBody, payload: WatchEventPayload) extends GH2013Event
 
 //case class CreateEvent(event: EventBody, payload: CreateEventPayload) extends GH2013Event
 
