@@ -8,7 +8,7 @@ package object gh2013
       val parsers = Seq(
          parser(PushEventParser)(_),
          parser(WatchEventParser)(_),
-        // parser(CreateEventParser)(_),
+         parser(CreateEventParser)(_),
            parser(IssuesEventParser)(_),
         // parser(ForkEventParser)(_),
         // parser(PublicEventParser)(_),

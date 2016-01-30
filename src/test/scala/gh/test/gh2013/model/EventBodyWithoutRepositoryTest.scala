@@ -1,8 +1,8 @@
-package gh.test.gh2013.payload
+package gh.test.gh2013.model
 
-import gh2013.events.{EventBodyWithoutRepository}
+import gh2013.events.EventBodyWithoutRepository
 import net.liftweb.json._
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 class EventBodyWithoutRepositoryTest extends FlatSpec with Matchers
 {

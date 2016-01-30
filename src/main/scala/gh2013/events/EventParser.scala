@@ -1,6 +1,6 @@
 package gh2013.events
 
-import gh2013.payloads.{WatchEventPayload, PushEventPayload, FollowEventPayload, IssuesEventPayload}
+import gh2013.payloads._
 import net.liftweb.json.JsonAST.JValue
 
 abstract class EventParser[E, P](val name: String)
@@ -23,14 +23,14 @@ object WatchEventParser extends EventParser[WatchEvent, WatchEventPayload]("Watc
 
   override def make(event: EventBody, payload: WatchEventPayload): GH2013Event = WatchEvent(event, payload)
 }
-/*
+
 object CreateEventParser extends EventParser[CreateEvent, CreateEventPayload]("CreateEvent")
 {
   override def parsePayload(json: JValue): Option[CreateEventPayload] = CreateEventPayload(json)
 
   override def make(event: EventBody, payload: CreateEventPayload): GH2013Event = CreateEvent(event, payload)
 }
-*/
+
 
 object IssuesEventParser extends EventParser[IssuesEvent, IssuesEventPayload]("IssuesEvent")
 {

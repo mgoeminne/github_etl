@@ -6,7 +6,7 @@ case class PushEvent(event: EventBody, payload: PushEventPayload) extends GH2013
 
 case class WatchEvent(event: EventBody, payload: WatchEventPayload) extends GH2013Event
 
-//case class CreateEvent(event: EventBody, payload: CreateEventPayload) extends GH2013Event
+case class CreateEvent(event: EventBody, payload: CreateEventPayload) extends GH2013Event
 
 case class IssuesEvent(event: EventBody, payload: IssuesEventPayload) extends GH2013Event
 
