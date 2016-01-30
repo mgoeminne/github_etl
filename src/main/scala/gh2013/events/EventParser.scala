@@ -40,14 +40,14 @@ object IssuesEventParser extends EventParser[IssuesEvent, IssuesEventPayload]("I
    override def make(event: EventBody, payload: IssuesEventPayload): GH2013Event = IssuesEvent(event, payload)
 }
 
-
-/*
 object ForkEventParser extends EventParser[ForkEvent, ForkEventPayload]("ForkEvent")
 {
    override def parsePayload(json: JValue): Option[ForkEventPayload] = ForkEventPayload(json)
 
    override def make(event: EventBody, payload: ForkEventPayload): GH2013Event = ForkEvent(event, payload)
 }
+
+/*
 
 object PublicEventParser extends EventParser[PublicEvent, PublicEventPayload]("PublicEvent")
 {
