@@ -47,7 +47,6 @@ object ForkEventParser extends EventParser[ForkEvent, ForkEventPayload]("ForkEve
    override def make(event: EventBody, payload: ForkEventPayload): GH2013Event = ForkEvent(event, payload)
 }
 
-/*
 
 object PublicEventParser extends EventParser[PublicEvent, PublicEventPayload]("PublicEvent")
 {
@@ -56,6 +55,7 @@ object PublicEventParser extends EventParser[PublicEvent, PublicEventPayload]("P
    override def make(event: EventBody, payload: PublicEventPayload): GH2013Event = PublicEvent(event, payload)
 }
 
+
 object PullRequestEventParser extends EventParser[PullRequestEvent, PullRequestEventPayload]("PullRequestEvent")
 {
    override def parsePayload(json: JValue): Option[PullRequestEventPayload] = PullRequestEventPayload(json)
@@ -63,6 +63,7 @@ object PullRequestEventParser extends EventParser[PullRequestEvent, PullRequestE
    override def make(event: EventBody, payload: PullRequestEventPayload): GH2013Event = PullRequestEvent(event, payload)
 }
 
+/*
 object DeleteEventParser extends EventParser[DeleteEvent, DeleteEventPayload]("DeleteEvent")
 {
    override def parsePayload(json: JValue): Option[DeleteEventPayload] = DeleteEventPayload(json)

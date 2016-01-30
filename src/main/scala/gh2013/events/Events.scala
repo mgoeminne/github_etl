@@ -13,9 +13,9 @@ case class IssuesEvent(event: EventBody, payload: IssuesEventPayload) extends GH
 
 case class ForkEvent(event: EventBody, payload: ForkEventPayload) extends GH2013Event
 
-//case class PublicEvent(event: EventBody, payload: PublicEventPayload) extends GH2013Event
+case class PublicEvent(event: EventBody, payload: PublicEventPayload) extends GH2013Event
 
-//case class PullRequestEvent(event: EventBody, payload: PullRequestEventPayload) extends GH2013Event
+case class PullRequestEvent(event: EventBody, payload: PullRequestEventPayload) extends GH2013Event
 
 //case class DeleteEvent(event: EventBody, payload: DeleteEventPayload) extends GH2013Event
 
