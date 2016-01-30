@@ -1,8 +1,8 @@
-package gh.test.gh2013.payload
+package gh.test.gh2013.model
 
 import gh2011.models.Repository
 import net.liftweb.json._
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 class RepositoryTest extends FlatSpec with Matchers
 {

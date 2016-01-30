@@ -1,8 +1,8 @@
 package gh2013.events
 
-import gh2013.payloads.IssuesEventPayload
+import gh2013.payloads._
 
-//case class PushEvent(event: EventBody, payload: PushEventPayload) extends GH2013Event
+case class PushEvent(event: EventBody, payload: PushEventPayload) extends GH2013Event
 
 //case class WatchEvent(event: EventBody, payload: WatchEventPayload) extends GH2013Event
 
@@ -20,7 +20,7 @@ case class IssuesEvent(event: EventBody, payload: IssuesEventPayload) extends GH
 
 //case class GistEvent(event: EventBody, payload: GistEventPayload) extends GH2013Event
 
-//case class FollowEvent(event: EventBody, payload: FollowEventPayload) extends GH2013Event
+case class FollowEvent(event: EventBody, payload: FollowEventPayload) extends GH2013Event
 
 //case class GollumEvent(event: EventBody, payload: GollumEventPayload) extends GH2013Event
 

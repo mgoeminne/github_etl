@@ -9,13 +9,13 @@ package object gh2013
          //parser(PushEventParser)(_),
         // parser(WatchEventParser)(_),
         // parser(CreateEventParser)(_),
-           parser(IssuesEventParser)(_)
+           parser(IssuesEventParser)(_),
         // parser(ForkEventParser)(_),
         // parser(PublicEventParser)(_),
         // parser(PullRequestEventParser)(_),
         // parser(DeleteEventParser)(_),
         // parser(GistEventParser)(_),
-        // parser(FollowEventParser)(_),
+           parser(FollowEventParser)(_)
         // parser(GollumEventParser)(_),
        //  parser(CommitCommentEventParser)(_),
        //  parser(MemberEventParser)(_),

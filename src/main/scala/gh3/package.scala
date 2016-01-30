@@ -14,6 +14,11 @@ package object gh3
       case _ => None
    }
 
+   def directNode2Boolean(node: JValue): Option[Boolean] = node match {
+      case JBool(x) => Some(x)
+      case _ => None
+   }
+
    def directNode2OptionString(node: JValue): Option[Option[String]] = node match {
       case JString(x) => Some(Some(x))
       case JNull => Some(None)
