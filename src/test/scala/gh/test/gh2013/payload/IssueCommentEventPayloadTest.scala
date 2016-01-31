@@ -4,7 +4,7 @@ import gh2013.payloads.{IssueCommentEventPayload, IssuesEventPayload}
 import net.liftweb.json._
 import org.scalatest.{Matchers, FlatSpec}
 
-class IssueCommentEventPayload extends FlatSpec with Matchers
+class IssueCommentEventPayloadTest extends FlatSpec with Matchers
 {
    "A valid IssueCommentEvent payload" must "be correctly parsed" in {
       val json = parse(

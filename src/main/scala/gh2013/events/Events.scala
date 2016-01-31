@@ -2,6 +2,8 @@ package gh2013.events
 
 import gh2013.models.EventBody
 import gh2013.payloads._
+import net.liftweb.json.JsonAST.JValue
+import org.joda.time.LocalDateTime
 
 case class PushEvent(event: EventBody, payload: PushEventPayload) extends GH2013Event
 
@@ -19,7 +21,31 @@ case class PullRequestEvent(event: EventBody, payload: PullRequestEventPayload) 
 
 case class DeleteEvent(event: EventBody, payload: DeleteEventPayload) extends GH2013Event
 
-//case class GistEvent(event: EventBody, payload: GistEventPayload) extends GH2013Event
+case class GistEvent(actor: String, public: Boolean, url: String, actor_attributes: ActorAttributes,
+                     created_at: LocalDateTime, payload: GistEventPayload) extends GH2013Event
+
+object GistEvent
+{
+   def apply(json: JValue): Option[GistEvent] =
+   {
+      val n2s = gh3.node2String(json)(_)
+      val n2b = gh3.node2Boolean(json)(_)
+      val n2ldt = gh3.node2LocalDateTime(json)(_)
+
+      val actor = n2s("actor")
+      val public = n2b("public")
+      val url = n2s("url")
+      val actor_attributes = ActorAttributes(json \ "actor_attributes")
+      val created_at = n2ldt("created_at")
+      val payload = GistEventPayload(json \ "payload")
+
+      val params = Seq(actor, public, url, actor_attributes, created_at, payload)
+
+      if(params.forall(_.isDefined))
+         Some(GistEvent(actor.get, public.get, url.get, actor_attributes.get, created_at.get, payload.get))
+      else None
+   }
+}
 
 case class FollowEvent(event: EventBody, payload: FollowEventPayload) extends GH2013Event
 
