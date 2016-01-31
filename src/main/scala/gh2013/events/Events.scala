@@ -23,7 +23,7 @@ case class DeleteEvent(event: EventBody, payload: DeleteEventPayload) extends GH
 
 case class FollowEvent(event: EventBody, payload: FollowEventPayload) extends GH2013Event
 
-//case class GollumEvent(event: EventBody, payload: GollumEventPayload) extends GH2013Event
+case class GollumEvent(event: EventBody, payload: GollumEventPayload) extends GH2013Event
 
 //case class CommitCommentEvent(event: EventBody, payload: CommitCommentEventPayload) extends GH2013Event
 

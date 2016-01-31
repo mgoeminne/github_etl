@@ -70,15 +70,15 @@ object DeleteEventParser extends EventParser[DeleteEvent, DeleteEventPayload]("D
 
    override def make(event: EventBody, payload: DeleteEventPayload): GH2013Event = DeleteEvent(event, payload)
 }
-/*
+  /*
 object GistEventParser extends EventParser[GistEvent, GistEventPayload]("GistEvent")
 {
    override def parsePayload(json: JValue): Option[GistEventPayload] = GistEventPayload(json)
 
    override def make(event: EventBody, payload: GistEventPayload): GH2013Event = GistEvent(event, payload)
 }
+  */
 
-*/
 object FollowEventParser extends EventParser[FollowEvent, FollowEventPayload]("FollowEvent")
 {
    override def parsePayload(json: JValue): Option[FollowEventPayload] = FollowEventPayload(json)
@@ -86,7 +86,7 @@ object FollowEventParser extends EventParser[FollowEvent, FollowEventPayload]("F
    override def make(event: EventBody, payload: FollowEventPayload): GH2013Event = FollowEvent(event, payload)
 }
 
-/*
+
 object GollumEventParser extends EventParser[GollumEvent, GollumEventPayload]("GollumEvent")
 {
    override def parsePayload(json: JValue): Option[GollumEventPayload] = GollumEventPayload(json)
@@ -94,6 +94,7 @@ object GollumEventParser extends EventParser[GollumEvent, GollumEventPayload]("G
    override def make(event: EventBody, payload: GollumEventPayload): GH2013Event = GollumEvent(event, payload)
 }
 
+/*
 object CommitCommentEventParser extends EventParser[CommitCommentEvent, CommitCommentEventPayload]("CommitCommentEvent")
 {
    override def parsePayload(json: JValue): Option[CommitCommentEventPayload] = CommitCommentEventPayload(json)
