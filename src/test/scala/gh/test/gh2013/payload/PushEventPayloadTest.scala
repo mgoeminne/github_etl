@@ -43,4 +43,27 @@ class PushEventPayloadTest extends FlatSpec with Matchers
 
       PushEventPayload(json) shouldBe 'defined
    }
+
+   "An other valid PushEvent payload" must "be correctly parsed" in {
+      val json = parse(
+         """
+           | {
+           |    "size":1,
+           |    "shas":[
+           |        [
+           |            "1646b4d31ef20661f7d9335c3634ee9f00aff82f",
+           |            "wolmhp@gmail.com",
+           |            "移植老代码到可用",
+           |            "wolf_m",
+           |            true
+           |        ]
+           |    ],
+           |    "ref":"refs/heads/dev",
+           |    "head":"1646b4d31ef20661f7d9335c3634ee9f00aff82f"
+           |
+           |}
+         """.stripMargin)
+
+      PushEventPayload(json) shouldBe 'defined
+   }
 }
