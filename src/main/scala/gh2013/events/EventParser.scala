@@ -122,6 +122,7 @@ object ForkApplyEventParser extends EventParser[ForkApplyEvent, ForkApplyEventPa
 
    override def make(event: EventBody, payload: ForkApplyEventPayload): GH2013Event = ForkApplyEvent(event, payload)
 }
+ */
 
 object IssueCommentEventParser extends EventParser[IssueCommentEvent, IssueCommentEventPayload]("IssueCommentEvent")
 {
@@ -130,4 +131,4 @@ object IssueCommentEventParser extends EventParser[IssueCommentEvent, IssueComme
    override def make(event: EventBody, payload: IssueCommentEventPayload): GH2013Event = IssueCommentEvent(event, payload)
 }
 
- */
+

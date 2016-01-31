@@ -33,6 +33,6 @@ case class DownloadEvent(event: EventBody, payload: DownloadEventPayload) extend
 
 //case class ForkApplyEvent(event: EventBody, payload: ForkApplyEventPayload) extends GH2013Event
 
-//case class IssueCommentEvent(event: EventBody, payload: IssueCommentEventPayload) extends GH2013Event
+case class IssueCommentEvent(event: EventBody, payload: IssueCommentEventPayload) extends GH2013Event
 
 
