@@ -16,8 +16,8 @@ package object gh2013
          parser(PullRequestEventParser)(_),
          parser(DeleteEventParser)(_),
         // parser(GistEventParser)(_),
-           parser(FollowEventParser)(_)
-        // parser(GollumEventParser)(_),
+           parser(FollowEventParser)(_),
+         parser(GollumEventParser)(_)
        //  parser(CommitCommentEventParser)(_),
        //  parser(MemberEventParser)(_),
        //  parser(DownloadEventParser)(_),

@@ -27,4 +27,26 @@ class GollumEventPayloadTest extends FlatSpec with Matchers
 
       GollumEventPayload(json) shouldBe 'defined
    }
+
+   "An other valid GollumEvent payload" must "be correctly parsed" in {
+      val json = parse(
+         """
+           | {
+           |
+           |    "pages":[
+           |        {
+           |            "title":"Inventables",
+           |            "summary":null,
+           |            "sha":"26e67c124d06ff4c030e84007efb8885b6bd6879",
+           |            "page_name":"Inventables",
+           |            "html_url":"https://github.com/firepick1/FirePick/wiki/Inventables",
+           |            "action":"created"
+           |        }
+           |    ]
+           |
+           |}
+         """.stripMargin)
+
+      GollumEventPayload(json) shouldBe 'defined
+   }
 }

@@ -48,6 +48,7 @@ class GollumEventTest extends FlatSpec with Matchers
            |        "id":1592013,
            |        "private":false
            |    },
+           |
            |    "actor_attributes":{
            |        "blog":"http://www.linkedin.com/pub/vladim%C3%ADr-hudec/17/477/11",
            |        "login":"hudec",
@@ -64,4 +65,59 @@ class GollumEventTest extends FlatSpec with Matchers
 
       gh2013.parser(GollumEventParser)(json) shouldBe 'defined
    }
+
+
+   "Another valid GollumEvent" must "be correctly parsed" in {
+      val json = parse(
+         """
+           | {
+           |
+           |    "actor":"firepick1",
+           |    "public":true,
+           |    "type":"GollumEvent",
+           |    "url":"https://github.com/firepick1/FirePick/wiki/Inventables",
+           |    "repository":{
+           |        "watchers":0,
+           |        "owner":"firepick1",
+           |        "created_at":"2012-12-31T20:46:53-08:00",
+           |        "stargazers":0,
+           |        "open_issues":0,
+           |        "has_issues":true,
+           |        "has_wiki":true,
+           |        "pushed_at":"2012-12-31T20:46:53-08:00",
+           |        "url":"https://github.com/firepick1/FirePick",
+           |        "description":"www.firepick.org GitHub ",
+           |        "forks":0,
+           |        "fork":false,
+           |        "size":0,
+           |        "name":"FirePick",
+           |        "id":7393229,
+           |        "private":false,
+           |        "has_downloads":true
+           |    },
+           |    "actor_attributes":{
+           |        "gravatar_id":"268127beb163e9ba4a6c17975f30d0f0",
+           |        "login":"firepick1",
+           |        "type":"User"
+           |    },
+           |    "payload":{
+           |        "pages":[
+           |            {
+           |                "title":"Inventables",
+           |                "summary":null,
+           |                "sha":"26e67c124d06ff4c030e84007efb8885b6bd6879",
+           |                "page_name":"Inventables",
+           |                "html_url":"https://github.com/firepick1/FirePick/wiki/Inventables",
+           |                "action":"created"
+           |            }
+           |        ]
+           |    },
+           |    "created_at":"2013-01-01T00:14:49-08:00"
+           |
+           |}
+         """.stripMargin)
+
+      gh2013.parser(GollumEventParser)(json) shouldBe 'defined
+   }
+
 }

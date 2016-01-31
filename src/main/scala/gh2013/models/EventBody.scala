@@ -1,6 +1,6 @@
 package gh2013.models
 
-import gh2013.events.{ActorAttributes, Repository}
+import gh2013.events.ActorAttributes
 import net.liftweb.json.JsonAST.JValue
 import org.joda.time.LocalDateTime
 
@@ -24,6 +24,8 @@ object EventBody
       val created_at = n2ldt("created_at")
 
       val params = Seq(actor, public, url, repository, actor_attributes, created_at)
+
+      println(params.map(_.isDefined))
 
       if(params.forall(_.isDefined))
          Some(EventBody(actor.get, public.get, url.get, repository.get, actor_attributes.get, created_at.get))
