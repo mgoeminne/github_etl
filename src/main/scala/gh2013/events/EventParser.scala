@@ -108,14 +108,14 @@ object MemberEventParser extends EventParser[MemberEvent, MemberEventPayload]("M
 
    override def make(event: EventBody, payload: MemberEventPayload): GH2013Event = MemberEvent(event, payload)
 }
-/*
+
 object DownloadEventParser extends EventParser[DownloadEvent, DownloadEventPayload]("DownloadEvent")
 {
    override def parsePayload(json: JValue): Option[DownloadEventPayload] = DownloadEventPayload(json)
 
    override def make(event: EventBody, payload: DownloadEventPayload): GH2013Event = DownloadEvent(event, payload)
 }
-
+/*
 object ForkApplyEventParser extends EventParser[ForkApplyEvent, ForkApplyEventPayload]("ForkApplyEvent")
 {
    override def parsePayload(json: JValue): Option[ForkApplyEventPayload] = ForkApplyEventPayload(json)
