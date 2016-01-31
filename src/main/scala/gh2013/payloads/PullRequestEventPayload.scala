@@ -18,8 +18,6 @@ object PullRequestEventPayload
 
       val params = Seq(number, action, pull_request)
 
-      println(params.map(_.isDefined))
-
       if(params.forall(_.isDefined)) Some(PullRequestEventPayload(number.get, action.get, pull_request.get))
       else None
    }

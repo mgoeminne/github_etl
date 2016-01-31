@@ -38,7 +38,7 @@ object Main
       var valid_lines = 0L
       var parsed_lines = 0L
 
-      val parsers = Stream(gh3.parse(_), gh2011.parse(_), gh2011b.parse(_), gh2011c.parse(_))
+      val parsers = Stream(gh3.parse(_), gh2011.parse(_), gh2011b.parse(_), gh2011c.parse(_), gh2013.parse(_))
 
       def parseJSON(json: JValue): Option[GHEvent] = parsers.flatMap(p => p(json)).headOption
 

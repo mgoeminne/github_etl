@@ -153,8 +153,6 @@ object GH3PullRequest
          changed_files
       )
 
-      println("Pull request: " + params.map(_.isDefined))
-
       if(params.forall(_.isDefined))
          Some(new GH3PullRequest(url.get,
             id.get,

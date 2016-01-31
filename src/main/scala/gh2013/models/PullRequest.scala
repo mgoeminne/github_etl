@@ -71,8 +71,6 @@ object PullRequest
          changed_files, patch_url, merged, commits_url, html_url, user, diff_url, review_comment_url, updated_at, head,
          merged_by, issue_url, base, title, commits, assignee)
 
-      println("Pull request : " + params.map(_.isDefined).zipWithIndex)
-
       if(params.forall(_.isDefined))
          Some(PullRequest(milestone.get, comments.get, comments_url.get, review_comments.get, review_comments_url.get,
             deletions.get, number.get, created_at.get, merge_commit_sha.get, closed_at.get, url.get, merged_at.get,
