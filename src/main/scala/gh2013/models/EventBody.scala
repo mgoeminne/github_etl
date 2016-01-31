@@ -25,8 +25,6 @@ object EventBody
 
       val params = Seq(actor, public, url, repository, actor_attributes, created_at)
 
-      println(params.map(_.isDefined))
-
       if(params.forall(_.isDefined))
          Some(EventBody(actor.get, public.get, url.get, repository.get, actor_attributes.get, created_at.get))
       else None

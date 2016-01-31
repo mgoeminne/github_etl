@@ -94,7 +94,7 @@ object GollumEventParser extends EventParser[GollumEvent, GollumEventPayload]("G
    override def make(event: EventBody, payload: GollumEventPayload): GH2013Event = GollumEvent(event, payload)
 }
 
-/*
+
 object CommitCommentEventParser extends EventParser[CommitCommentEvent, CommitCommentEventPayload]("CommitCommentEvent")
 {
    override def parsePayload(json: JValue): Option[CommitCommentEventPayload] = CommitCommentEventPayload(json)
@@ -102,6 +102,7 @@ object CommitCommentEventParser extends EventParser[CommitCommentEvent, CommitCo
    override def make(event: EventBody, payload: CommitCommentEventPayload): GH2013Event = CommitCommentEvent(event, payload)
 }
 
+/*
 object MemberEventParser extends EventParser[MemberEvent, MemberEventPayload]("MemberEvent")
 {
    override def parsePayload(json: JValue): Option[MemberEventPayload] = MemberEventPayload(json)

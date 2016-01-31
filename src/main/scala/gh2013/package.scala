@@ -23,6 +23,7 @@ package object gh2013
        //  parser(DownloadEventParser)(_),
        //  parser(ForkApplyEventParser)(_),
         // parser(IssueCommentEventParser)(_)
+
       )
 
       //println(parsers.map(p => p(event)))

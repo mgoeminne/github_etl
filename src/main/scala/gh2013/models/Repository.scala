@@ -39,8 +39,6 @@ object Repository
       val params = Seq(watchers, owner, created_at, stargazers, open_issues, has_issues, has_wiki, pushed_at, url,
          description, forks, size, name, language, id, `private`, has_downloads)
 
-      println("REpsitory: " + params.map(_.isDefined))
-
       if(params.forall(_.isDefined))
          Some(new Repository(watchers.get, owner.get, created_at.get, stargazers.get, open_issues.get, has_issues.get,
             has_wiki.get, pushed_at.get, url.get, description.get, forks.get, size.get, name.get, language.get, id.get,

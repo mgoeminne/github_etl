@@ -25,7 +25,7 @@ case class FollowEvent(event: EventBody, payload: FollowEventPayload) extends GH
 
 case class GollumEvent(event: EventBody, payload: GollumEventPayload) extends GH2013Event
 
-//case class CommitCommentEvent(event: EventBody, payload: CommitCommentEventPayload) extends GH2013Event
+case class CommitCommentEvent(event: EventBody, payload: CommitCommentEventPayload) extends GH2013Event
 
 //case class MemberEvent(event: EventBody, payload: MemberEventPayload) extends GH2013Event
 
@@ -34,3 +34,5 @@ case class GollumEvent(event: EventBody, payload: GollumEventPayload) extends GH
 //case class ForkApplyEvent(event: EventBody, payload: ForkApplyEventPayload) extends GH2013Event
 
 //case class IssueCommentEvent(event: EventBody, payload: IssueCommentEventPayload) extends GH2013Event
+
+
