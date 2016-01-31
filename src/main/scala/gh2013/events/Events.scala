@@ -32,6 +32,10 @@ object GistEvent
       val n2b = gh3.node2Boolean(json)(_)
       val n2ldt = gh3.node2LocalDateTime(json)(_)
 
+      val `type` = n2s("type")
+
+      if(`type`.isEmpty || `type`.get != "GistEvent") return None
+
       val actor = n2s("actor")
       val public = n2b("public")
       val url = n2s("url")
@@ -42,8 +46,8 @@ object GistEvent
       val params = Seq(actor, public, url, actor_attributes, created_at, payload)
 
       if(params.forall(_.isDefined))
-         Some(GistEvent(actor.get, public.get, url.get, actor_attributes.get, created_at.get, payload.get))
-      else None
+         return Some(GistEvent(actor.get, public.get, url.get, actor_attributes.get, created_at.get, payload.get))
+      else return None
    }
 }
 
