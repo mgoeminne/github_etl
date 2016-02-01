@@ -1,8 +1,8 @@
-package gh.test.gh2013.payload
+package gh.test.gh2013.model
 
-import gh2013.payloads.FollowEventTarget
+import gh2013.models.FollowEventTarget
 import net.liftweb.json._
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 class FollowEventTargetTest extends FlatSpec with Matchers
 {

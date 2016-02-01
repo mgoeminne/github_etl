@@ -6,7 +6,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class RepositoryTest extends FlatSpec with Matchers
 {
-   "A valid EventBody" must "be correctly parsed" in {
+   "A valid Repository" must "be correctly parsed" in {
       val json = parse(
          """
            | {
@@ -35,4 +35,6 @@ class RepositoryTest extends FlatSpec with Matchers
 
       Repository(json) shouldBe 'defined
    }
+
+
 }

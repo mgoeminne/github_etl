@@ -39,6 +39,8 @@ class FollowEventTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      gh2013.parser(FollowEventParser)(json) shouldBe 'defined
+      FollowEventParser.parse(json) shouldBe 'defined
    }
+
+
 }

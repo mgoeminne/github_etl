@@ -77,11 +77,9 @@ object GistEventParser
 }
 
 
-object FollowEventParser extends EventParser[FollowEvent, FollowEventPayload]("FollowEvent")
+object FollowEventParser
 {
-   override def parsePayload(json: JValue): Option[FollowEventPayload] = FollowEventPayload(json)
-
-   override def make(event: EventBody, payload: FollowEventPayload): GH2013Event = FollowEvent(event, payload)
+   def parse(json: JValue): Option[FollowEvent] = FollowEvent(json)
 }
 
 

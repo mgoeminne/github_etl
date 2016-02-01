@@ -61,7 +61,7 @@ object Main
             json match {
                case x: JObject => parseJSON(x) match {
                   case Some(a) => parsed_lines += 1
-                  case _ => println("NOT PARSED: " + line)
+                  case _ => //println("NOT PARSED: " + line)
                }
                case _ => "ERROR " + json
             }

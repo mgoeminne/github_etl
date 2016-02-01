@@ -1,4 +1,4 @@
-package gh2013.payloads
+package gh2013.models
 
 import net.liftweb.json.JsonAST.JValue
 

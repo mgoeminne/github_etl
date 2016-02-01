@@ -1,5 +1,6 @@
 package gh2013.payloads
 
+import gh2013.models.FollowEventTarget
 import net.liftweb.json.JsonAST.JValue
 
 case class FollowEventPayload(target: FollowEventTarget)

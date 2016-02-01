@@ -8,9 +8,9 @@ case class CommitRepository(events_url: String, comments_url: String, full_name:
    pushed_at: LocalDateTime, url: String, open_issues: Long, merges_url: String, statuses_url: String,
    id: Long, git_tags_url: String, contributors_url: String, has_downloads: Boolean, stargazers_url: String,
    subscription_url: String, has_issues: Boolean, compare_url: String, forks_count: Long, clone_url: String,
-   contents_url: String, master_branch: String, mirror_url: Option[String], fork: Boolean, blobs_url: String,
+   contents_url: String, master_branch: Option[String], mirror_url: Option[String], fork: Boolean, blobs_url: String,
    branches_url: String, trees_url: String, `private`: Boolean, watchers: Long, teams_url: String,
-   downloads_url: String, default_branch: String, forks_url: String, assignees_url: String, svn_url: String,
+   downloads_url: String, default_branch: Option[String], forks_url: String, assignees_url: String, svn_url: String,
    archive_url: String, subscribers_url: String, commits_url: String, issues_url: String, html_url: String, tags_url: String,
    updated_at: LocalDateTime, milestones_url: String, watchers_count: Long, languages_url: String,
    notifications_url: String, ssh_url: String, name: String, description: String, labels_url: String, language: String,
@@ -53,7 +53,7 @@ object CommitRepository
       val forks_count = n2l("forks_count")
       val clone_url = n2s("clone_url")
       val contents_url = n2s("contents_url")
-      val master_branch = n2s("master_branch")
+      val master_branch = n2os("master_branch")
       val mirror_url = n2os("mirror_url")
       val fork = n2b("fork")
       val blobs_url = n2s("blobs_url")
@@ -63,7 +63,7 @@ object CommitRepository
       val watchers = n2l("watchers")
       val teams_url = n2s("teams_url")
       val downloads_url = n2s("downloads_url")
-      val default_branch = n2s("default_branch")
+      val default_branch = n2os("default_branch")
       val forks_url = n2s("forks_url")
       val assignees_url = n2s("assignees_url")
       val svn_url = n2s("svn_url")

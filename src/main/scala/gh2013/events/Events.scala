@@ -51,7 +51,35 @@ object GistEvent
    }
 }
 
-case class FollowEvent(event: EventBody, payload: FollowEventPayload) extends GH2013Event
+case class FollowEvent(actor: String, public: Boolean, created_at: LocalDateTime, payload: FollowEventPayload,
+                       actor_attributes: ActorAttributes, url: String) extends GH2013Event
+
+object FollowEvent
+{
+   def apply(json: JValue): Option[FollowEvent] =
+   {
+      val n2s = gh3.node2String(json)(_)
+      val n2b = gh3.node2Boolean(json)(_)
+      val n2ldt = gh3.node2LocalDateTime(json)(_)
+
+      val `type` = n2s("type")
+
+      if(`type`.isEmpty || `type`.get != "FollowEvent") return None
+
+      val actor = n2s("actor")
+      val public = n2b("public")
+      val created_at = n2ldt("created_at")
+      val payload = FollowEventPayload(json \ "payload")
+      val actor_attributes = ActorAttributes(json \ "actor_attributes")
+      val url = n2s("url")
+
+      val params = Seq(actor, public, created_at, payload, actor_attributes, url)
+
+      if(params.forall(_.isDefined))
+         Some(FollowEvent(actor.get, public.get, created_at.get, payload.get, actor_attributes.get, url.get))
+      else None
+   }
+}
 
 case class GollumEvent(event: EventBody, payload: GollumEventPayload) extends GH2013Event
 
