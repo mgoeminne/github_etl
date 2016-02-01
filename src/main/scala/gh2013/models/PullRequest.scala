@@ -11,7 +11,7 @@ case class PullRequest(milestone: Option[String], comments: Long, comments_url: 
                        mergeable: Option[String], state: String, mergeable_state: String, body: String,
                        changed_files: Long, patch_url: String, merged: Boolean, commits_url: String, html_url: String,
                        user: User, diff_url: String, review_comment_url: String,
-                       updated_at: Option[LocalDateTime], head: Commit, merged_by: User, issue_url: String,
+                       updated_at: Option[LocalDateTime], head: Commit, merged_by: Option[User], issue_url: String,
                        base: Commit, title: String, commits: Long, assignee: Option[String])
 
 object PullRequest
@@ -58,7 +58,7 @@ object PullRequest
       val review_comment_url = n2s("review_comment_url")
       val updated_at = n2oldt("updated_at")
       val head = Commit(json \ "head")
-      val merged_by = User(json \ "merged_by")
+      val merged_by = Some(User(json \ "merged_by"))
       val issue_url = n2s("issue_url")
       val base = Commit(json \ "base")
       val title = n2s("title")
