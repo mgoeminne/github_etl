@@ -2,7 +2,8 @@ package gh2013.payloads
 
 import net.liftweb.json.JsonAST.JValue
 
-case class CreateEventPayload(ref: Option[String], description: Option[String], ref_type: String, master_branch: String)
+case class CreateEventPayload(ref: Option[String], description: Option[String], ref_type: String,
+                              master_branch: Option[String])
 
 object CreateEventPayload
 {
@@ -14,7 +15,7 @@ object CreateEventPayload
       val ref = n2os("ref")
       val description = n2os("description")
       val ref_type = n2s("ref_type")
-      val master_branch = n2s("master_branch")
+      val master_branch = n2os("master_branch")
 
       val params = Seq(ref, description, ref_type, master_branch)
 
