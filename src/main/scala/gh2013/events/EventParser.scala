@@ -48,11 +48,9 @@ object ForkEventParser extends EventParser[ForkEvent, ForkEventPayload]("ForkEve
 }
 
 
-object PublicEventParser extends EventParser[PublicEvent, PublicEventPayload]("PublicEvent")
+object PublicEventParser
 {
-   override def parsePayload(json: JValue): Option[PublicEventPayload] = PublicEventPayload(json)
-
-   override def make(event: EventBody, payload: PublicEventPayload): GH2013Event = PublicEvent(event, payload)
+   def parse(json: JValue): Option[PublicEvent] = PublicEvent(json)
 }
 
 

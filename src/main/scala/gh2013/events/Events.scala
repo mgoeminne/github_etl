@@ -15,7 +15,34 @@ case class IssuesEvent(event: EventBody, payload: IssuesEventPayload) extends GH
 
 case class ForkEvent(event: EventBody, payload: ForkEventPayload) extends GH2013Event
 
-case class PublicEvent(event: EventBody, payload: PublicEventPayload) extends GH2013Event
+case class PublicEvent(actor: String, public: Boolean, url: String, actor_attributes: ActorAttributes,
+                       created_at: LocalDateTime) extends GH2013Event
+
+object PublicEvent
+{
+   def apply(json: JValue): Option[PublicEvent] =
+   {
+      val n2s = gh3.node2String(json)(_)
+      val n2b = gh3.node2Boolean(json)(_)
+      val n2ldt = gh3.node2LocalDateTime(json)(_)
+
+      val `type` = n2s("type")
+
+      if(`type`.isEmpty || `type`.get != "PublicEvent") return None
+
+      val actor = n2s("actor")
+      val public = n2b("public")
+      val url = n2s("url")
+      val actor_attributes = ActorAttributes(json \ "actor_attributes")
+      val created_at = n2ldt("created_at")
+
+      val params = Seq(actor, public, url, actor_attributes, created_at)
+
+      if(params.forall(_.isDefined))
+         return Some(PublicEvent(actor.get, public.get, url.get, actor_attributes.get, created_at.get))
+      else return None
+   }
+}
 
 case class PullRequestEvent(event: EventBody, payload: PullRequestEventPayload) extends GH2013Event
 

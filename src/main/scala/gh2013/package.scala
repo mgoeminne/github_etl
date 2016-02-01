@@ -12,7 +12,7 @@ package object gh2013
          parser(CreateEventParser)(_),
          parser(IssuesEventParser)(_),
          parser(ForkEventParser)(_),
-         parser(PublicEventParser)(_),
+         PublicEventParser.parse(_),
          parser(PullRequestEventParser)(_),
          parser(DeleteEventParser)(_),
          GistEventParser.parse(_),

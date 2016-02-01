@@ -229,4 +229,37 @@ class CommitTest extends FlatSpec with Matchers
 
       Commit(json) shouldBe 'defined
    }
+
+   "An third valid Commit" must "be correctly parsed" in {
+      val json = parse(
+         """
+           | {
+           |
+           |    "label":"Florin65:dos",
+           |    "sha":"4c0b2f50ebdc7c46a27af3d39b065f214876386a",
+           |    "user":{
+           |        "received_events_url":"https://api.github.com/users/Florin65/received_events",
+           |        "events_url":"https://api.github.com/users/Florin65/events{/privacy}",
+           |        "gravatar_id":"bd730de10dfe9d7032be42e395a1f8ca",
+           |        "following_url":"https://api.github.com/users/Florin65/following",
+           |        "login":"Florin65",
+           |        "starred_url":"https://api.github.com/users/Florin65/starred{/owner}{/repo}",
+           |        "repos_url":"https://api.github.com/users/Florin65/repos",
+           |        "type":"User",
+           |        "id":1948024,
+           |        "subscriptions_url":"https://api.github.com/users/Florin65/subscriptions",
+           |        "url":"https://api.github.com/users/Florin65",
+           |        "organizations_url":"https://api.github.com/users/Florin65/orgs",
+           |        "followers_url":"https://api.github.com/users/Florin65/followers",
+           |        "avatar_url":"https://secure.gravatar.com/avatar/bd730de10dfe9d7032be42e395a1f8ca?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
+           |        "gists_url":"https://api.github.com/users/Florin65/gists{/gist_id}"
+           |    },
+           |    "ref":"dos",
+           |    "repo":null
+           |
+           |}
+         """.stripMargin)
+
+      Commit(json) shouldBe 'defined
+   }
 }

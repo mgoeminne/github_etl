@@ -1,12 +1,11 @@
 package gh.test.gh2013.payload
 
-import gh2013.events.{PublicEventParser, PushEventParser}
+import gh2013.events.{PublicEventParser}
 import net.liftweb.json._
 import org.scalatest.{Matchers, FlatSpec}
 
 class PublicEventTest extends FlatSpec with Matchers
 {
-   // TODO: NO PAYLOAD FOR THIS EVENT
    "A valid PublicEvent" must "be correctly parsed" in {
       val json = parse(
          """
@@ -50,6 +49,6 @@ class PublicEventTest extends FlatSpec with Matchers
            |}
          """.stripMargin)
 
-      gh2013.parser(PublicEventParser)(json) shouldBe 'defined
+      PublicEventParser.parse(json) shouldBe 'defined
    }
 }

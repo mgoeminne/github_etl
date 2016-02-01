@@ -44,6 +44,8 @@ object Main
 
       files.foreach(file => {
          logger.debug("Reading file " + file)
+         val start = System.currentTimeMillis()
+         val old_lines = read_lines
 
          val gzipStream = new GZIPInputStream(new FileInputStream(file))
          val decoder = new InputStreamReader(gzipStream, "UTF-8")
@@ -61,7 +63,7 @@ object Main
             json match {
                case x: JObject => parseJSON(x) match {
                   case Some(a) => parsed_lines += 1
-                  case _ => //println("NOT PARSED: " + line)
+                  case _ => println("NOT PARSED: " + line)
                }
                case _ => "ERROR " + json
             }
@@ -72,7 +74,14 @@ object Main
 
          buffered.close()
 
-         println(read_lines + " \t" + valid_lines + " (" + (valid_lines / read_lines.toFloat).formatted("%03f") + ") \t" + parsed_lines + " (" + (parsed_lines / valid_lines.toFloat).formatted("%03f") + ")")
+         val end = System.currentTimeMillis()
+         val frequency = ((read_lines-old_lines).toFloat/((end-start)/1000F)).toInt
+         val time = (end-start)/1000F
+
+         println(read_lines + " \t" + valid_lines +
+            " (" + (valid_lines / read_lines.toFloat).formatted("%03f") + ") \t" +
+            parsed_lines + " (" + (parsed_lines / valid_lines.toFloat).formatted("%03f") + ")" +
+            " (" + frequency + " lines/sec, " + time.formatted("%02f") + " secs to read the file)")
       })
    }
 }
